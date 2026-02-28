@@ -1,0 +1,19 @@
+import { LogoBadge } from '../components/LogoBadge'
+import { MobileScreen } from '../components/MobileScreen'
+import { StartButton } from '../components/StartButton'
+
+export function InicioPage() {
+    return (
+        <MobileScreen>
+            <div className="mt-4 flex flex-1 flex-col items-center">
+                <LogoBadge />
+
+                <h1 className="mt-14 text-5xl font-bold tracking-wide text-zinc-900 sm:mt-16 sm:text-6xl">UNICASH</h1>
+
+                <div className="mt-auto w-full pb-16 sm:pb-20">
+                    <StartButton />
+                </div>
+            </div>
+        </MobileScreen>
+    )
+}
