@@ -5,7 +5,7 @@ type FormFieldProps = {
     hideLabel?: boolean
     placeholder?: string
     prefix?: string
-    type?: 'text' | 'number' | 'tel'
+    type?: 'text' | 'number' | 'tel' | 'date'
     inputMode?: 'text' | 'numeric' | 'decimal'
     value?: string
     onValueChange?: (value: string) => void
