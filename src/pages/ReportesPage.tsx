@@ -56,7 +56,7 @@ function FilaResumen({ label, value, secondary }: FilaResumenProps) {
 
 function PlaceholderReporte() {
     return (
-        <div className="mt-2 flex h-56 items-center justify-center bg-zinc-300">
+        <div className="mt-2 flex h-56 items-center justify-center">
             <LuImage className="h-18 w-18 text-zinc-900" />
         </div>
     )
@@ -141,11 +141,11 @@ export function ReportesPage({ onNavigate }: ReportesPageProps) {
             <MobileScreen>
                 <TopBrandTitle />
 
-                <h1 className="mt-4 text-center text-5xl leading-tight font-bold text-zinc-950 sm:text-6xl">
+                <h1 className="mt-4 text-center text-5xl leading-tight font-bold text-title sm:text-6xl">
                     Tus Movimientos
                 </h1>
 
-                <div className="mt-8 flex flex-col border-t border-zinc-800">
+                <div className="mt-8 flex flex-col border-t border-border">
                     <ReporteAccordionItem
                         title="Por categoría"
                         isOpen={openSection === 'categoria'}
@@ -154,7 +154,7 @@ export function ReportesPage({ onNavigate }: ReportesPageProps) {
                         {porCategoria.length === 0 ? (
                             <PlaceholderReporte />
                         ) : (
-                            <div className="mt-2 rounded-lg bg-zinc-50 px-3">
+                            <div className="mt-2 rounded-lg px-3">
                                 {porCategoria.map((item) => (
                                     <FilaResumen
                                         key={item.categoria}
@@ -175,7 +175,7 @@ export function ReportesPage({ onNavigate }: ReportesPageProps) {
                         {porValor.length === 0 ? (
                             <PlaceholderReporte />
                         ) : (
-                            <div className="mt-2 rounded-lg bg-zinc-50 px-3">
+                            <div className="mt-2 rounded-lg px-3">
                                 {porValor.map((movimiento) => (
                                     <FilaResumen
                                         key={movimiento.id}
@@ -196,7 +196,7 @@ export function ReportesPage({ onNavigate }: ReportesPageProps) {
                         {porDia.length === 0 ? (
                             <PlaceholderReporte />
                         ) : (
-                            <div className="mt-2 rounded-lg bg-zinc-50 px-3">
+                            <div className="mt-2 rounded-lg px-3">
                                 {porDia.map((item) => (
                                     <FilaResumen
                                         key={item.fecha}
@@ -217,7 +217,7 @@ export function ReportesPage({ onNavigate }: ReportesPageProps) {
                         {reporteSemanal.length === 0 ? (
                             <PlaceholderReporte />
                         ) : (
-                            <div className="mt-2 rounded-lg bg-zinc-50 px-3">
+                            <div className="mt-2 rounded-lg px-3">
                                 {reporteSemanal.map((item) => (
                                     <FilaResumen
                                         key={item.inicio}

@@ -33,10 +33,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <MobileScreen>
                 <TopBrandTitle />
 
-                <h1 className="mt-8 text-center text-5xl leading-tight font-bold text-zinc-950 sm:mt-6 sm:text-6xl">Hola, {primerNombre}!</h1>
+                <h1 className="mt-15 mb-5 text-center text-5xl leading-tight font-bold text-title sm:mt-6 sm:text-6xl">Hola, {primerNombre}!</h1>
 
                 <h2 className="mt-10 text-center text-[30px] leading-tight font-bold text-zinc-950 sm:mt-14 sm:text-6xl">Hoy has usado:</h2>
-                <p className="mt-5 text-center text-[40px] font-normal text-zinc-950 sm:mt-7 sm:text-7xl">{formatCOP(gastoHoy)}</p>
+                <p className="mt-5 text-center text-[40px] font-normal text-label sm:mt-7 sm:text-7xl">{formatCOP(gastoHoy)}</p>
 
                 <BudgetStatusBadge message="Aún estás dentro de tu presupuesto" />
 
