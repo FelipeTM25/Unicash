@@ -3,10 +3,16 @@ import { AjustesIniciales } from './pages/AjustesInicialesPage'
 import { HomePage } from './pages/HomePage'
 import { InicioPage } from './pages/InicioPage'
 import { PresupuestoPage } from './pages/PresupuestoPage'
+import { getAjustesIniciales } from './Data/ajustesStorage'
 import type { PageName } from './types/navigation'
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState<PageName>('presupuesto')
+  const [currentPage, setCurrentPage] = useState<PageName>('inicio')
+
+  function handleComenzar() {
+    const datosGuardados = getAjustesIniciales()
+    setCurrentPage(datosGuardados ? 'home' : 'ajustes-iniciales')
+  }
 
   if (currentPage === 'ajustes-iniciales') {
     return <AjustesIniciales onContinue={() => setCurrentPage('home')} />
@@ -20,5 +26,5 @@ export function App() {
     return <PresupuestoPage onNavigate={setCurrentPage} />
   }
 
-  return <InicioPage onStart={() => setCurrentPage('ajustes-iniciales')} />
+  return <InicioPage onStart={handleComenzar} />
 }
