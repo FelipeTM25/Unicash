@@ -2,13 +2,23 @@ import { useMemo, useState } from 'react'
 import { BottomNavBar } from '../components/BottomNavBar'
 import { BudgetInfoRow } from '../components/BudgetInfoRow'
 import { ConsejosModal } from '../components/ConsejosModal'
+import { EditarPresupuestoModal } from '../components/EditarPresupuestoModal'
 import { MobileScreen } from '../components/MobileScreen'
 import { PrimaryButton } from '../components/PrimaryButton'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { calcularMetaSemanal, getAjustesIniciales } from '../Data/ajustesStorage'
 import { getConsejoAleatorio, getEstado } from '../Data/consejos'
+import type { periodoOptions } from '../Data/periodoOptions'
 
 import type { PageName } from '../types/navigation'
+
+type PeriodoOption = (typeof periodoOptions)[number]
+
+const labelPorPeriodo: Record<PeriodoOption, string> = {
+    Mensual: 'Presupuesto mensual:',
+    Semanal: 'Presupuesto semanal:',
+    Diarios: 'Presupuesto diario:',
+}
 
 type PresupuestoPageProps = {
     onNavigate?: (page: PageName) => void
@@ -20,39 +30,50 @@ function formatCOP(value: number): string {
 
 export function PresupuestoPage({ onNavigate }: PresupuestoPageProps) {
     const ajustes = useMemo(() => getAjustesIniciales(), [])
-    const metaSemanal = useMemo(() => ajustes ? calcularMetaSemanal(ajustes) : 0, [ajustes])
+    const [presupuesto, setPresupuesto] = useState(() => ajustes?.presupuesto ?? 0)
+    const metaSemanal = useMemo(() => ajustes
+        ? calcularMetaSemanal({ ...ajustes, presupuesto })
+        : 0, [ajustes, presupuesto])
 
     // Gasto semanal: en 0 hasta que exista el módulo de movimientos
     const gastoSemanal = 0
     const excedido = Math.max(0, gastoSemanal - metaSemanal)
     const estado = getEstado(gastoSemanal, metaSemanal)
 
-    const [modalAbierto, setModalAbierto] = useState(false)
+    const [modalConsejos, setModalConsejos] = useState(false)
     const [consejo, setConsejo] = useState('')
+    const [modalEditar, setModalEditar] = useState(false)
 
     function handleAbrirConsejos() {
         setConsejo(getConsejoAleatorio(estado))
-        setModalAbierto(true)
+        setModalConsejos(true)
     }
 
     function handleNuevoConsejo() {
         setConsejo(getConsejoAleatorio(estado))
     }
 
-    const labelPresupuesto = ajustes?.periodo === 'Mensual'
-        ? 'Presupuesto mensual:'
-        : ajustes?.periodo === 'Semanal'
-            ? 'Presupuesto semanal:'
-            : 'Presupuesto diario:'
+    const labelPresupuesto = ajustes ? labelPorPeriodo[ajustes.periodo] : 'Presupuesto:'
 
     return (
         <>
-            {modalAbierto && (
+            {modalConsejos && (
                 <ConsejosModal
                     consejo={consejo}
                     estado={estado}
-                    onClose={() => setModalAbierto(false)}
+                    onClose={() => setModalConsejos(false)}
                     onNuevoConsejo={handleNuevoConsejo}
+                />
+            )}
+
+            {modalEditar && ajustes && (
+                <EditarPresupuestoModal
+                    presupuestoActual={presupuesto}
+                    onClose={() => setModalEditar(false)}
+                    onGuardado={(nuevo) => {
+                        setPresupuesto(nuevo)
+                        setModalEditar(false)
+                    }}
                 />
             )}
 
@@ -66,7 +87,7 @@ export function PresupuestoPage({ onNavigate }: PresupuestoPageProps) {
                 <div className="mt-6 flex flex-col">
                     <BudgetInfoRow
                         label={labelPresupuesto}
-                        value={ajustes ? formatCOP(ajustes.presupuesto) : '$0'}
+                        value={formatCOP(presupuesto)}
                     />
                     <BudgetInfoRow
                         label="Meta semanal recomendada:"
@@ -91,7 +112,7 @@ export function PresupuestoPage({ onNavigate }: PresupuestoPageProps) {
                         Consejos para tus movimientos
                     </button>
 
-                    <PrimaryButton text="Editar" />
+                    <PrimaryButton text="Editar" onClick={() => setModalEditar(true)} />
                 </div>
 
                 <div className="h-30" aria-hidden />
