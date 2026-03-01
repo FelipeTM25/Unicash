@@ -51,7 +51,7 @@ export function AjustesPage({ onNavigate }: AjustesPageProps) {
                 </h1>
 
                 <div className="mt-6 flex flex-col">
-                    <AjustesMenuItem label="Editar Categorías" />
+                    <AjustesMenuItem label="Editar Categorías" onClick={() => onNavigate?.('editar-categorias')} />
                     <AjustesMenuItem label="Cambiar Presupuesto" onClick={() => setModalEditar(true)} />
                     <AjustesMenuItem label="Resetear Datos" onClick={() => setModalResetear(true)} />
                     <AjustesMenuItem label="Historial de Movimientos" />
