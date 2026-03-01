@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { BottomNavBar } from '../components/BottomNavBar'
 import { BudgetInfoRow } from '../components/BudgetInfoRow'
 import { MobileScreen } from '../components/MobileScreen'
+import { PrimaryButton } from '../components/PrimaryButton'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { calcularMetaSemanal, getAjustesIniciales } from '../Data/ajustesStorage'
 
@@ -55,6 +56,17 @@ export function PresupuestoPage({ onNavigate }: PresupuestoPageProps) {
                         label="Te pasaste por:"
                         value={formatCOP(excedido)}
                     />
+                </div>
+
+                <div className="mt-8 flex flex-col gap-4">
+                    <button
+                        type="button"
+                        className="w-full rounded-2xl border-2 border-button-primary bg-transparent py-3 text-[16px] font-medium text-button-primary transition-all duration-200 hover:bg-button-primary/10 active:scale-[0.99] sm:text-2xl"
+                    >
+                        Consejos para tus movimientos
+                    </button>
+
+                    <PrimaryButton text="Editar" />
                 </div>
 
                 <div className="h-30" aria-hidden />
