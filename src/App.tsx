@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { AjustesIniciales } from './pages/AjustesInicialesPage'
+import { AjustesPage } from './pages/AjustesPage'
 import { HomePage } from './pages/HomePage'
 import { InicioPage } from './pages/InicioPage'
 import { PresupuestoPage } from './pages/PresupuestoPage'
@@ -24,6 +25,10 @@ export function App() {
 
   if (currentPage === 'presupuesto') {
     return <PresupuestoPage onNavigate={setCurrentPage} />
+  }
+
+  if (currentPage === 'ajustes') {
+    return <AjustesPage onNavigate={setCurrentPage} />
   }
 
   return <InicioPage onStart={handleComenzar} />
