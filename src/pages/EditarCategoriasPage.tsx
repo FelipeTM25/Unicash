@@ -47,17 +47,10 @@ export function EditarCategoriasPage({ onNavigate }: EditarCategoriasPageProps) 
             <MobileScreen>
                 <TopBrandTitle />
 
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4">
                     <h1 className="text-2xl font-bold text-zinc-950 sm:text-4xl">
                         Editar Categorías
                     </h1>
-                    <button
-                        onClick={() => setMostrarAnadir(true)}
-                        className="flex items-center gap-1 rounded-xl bg-button-primary px-3 py-2 text-[13px] font-semibold text-zinc-100 transition-all hover:bg-title active:scale-[0.98] sm:text-xl"
-                        aria-label="Añadir categoría"
-                    >
-                        + AÑADIR
-                    </button>
                 </div>
 
                 <div className="mt-4">
@@ -98,6 +91,15 @@ export function EditarCategoriasPage({ onNavigate }: EditarCategoriasPageProps) 
             )}
 
             <div className="fixed inset-x-0 bottom-0 z-40 w-full">
+                <div className="flex justify-center bg-transparent py-3">
+                    <button
+                        onClick={() => setMostrarAnadir(true)}
+                        className="flex items-center gap-2 rounded-full bg-button-primary px-6 py-3 text-[15px] font-semibold text-white shadow-lg transition-all hover:bg-title active:scale-[0.97] sm:text-xl"
+                        aria-label="Añadir categoría"
+                    >
+                        + Añadir categoría
+                    </button>
+                </div>
                 <BottomNavBar activeTab="ajustes" onTabChange={onNavigate} />
             </div>
         </>
