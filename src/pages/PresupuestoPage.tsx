@@ -8,12 +8,12 @@ import { PrimaryButton } from '../components/PrimaryButton'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { getAjustesIniciales } from '../Data/ajustesStorage'
 import { getConsejoAleatorio, getEstado } from '../Data/consejos'
-import { getGastoDiaActual, getGastoSemanaActual } from '../Data/movimientosStorage'
+import { getGastoDia, getGastoSemana, labelDia, labelSemana } from '../Data/movimientosStorage'
 import type { PageName } from '../types/navigation'
 
 const labelPorPeriodo = {
-    Mensual: { presupuesto: 'Presupuesto mensual:', meta: 'Meta semanal recomendada:', gasto: 'Esta semana has usado:' },
-    Semanal: { presupuesto: 'Presupuesto semanal:', meta: 'Meta diaria recomendada:', gasto: 'Hoy has usado:' },
+    Mensual: { presupuesto: 'Presupuesto mensual:', meta: 'Meta semanal recomendada:', gasto: 'Has usado:' },
+    Semanal: { presupuesto: 'Presupuesto semanal:', meta: 'Meta diaria recomendada:', gasto: 'Has usado:' },
 } as const
 
 type PresupuestoPageProps = {
@@ -31,6 +31,7 @@ function calcularMeta(presupuesto: number, periodo: 'Mensual' | 'Semanal'): numb
 export function PresupuestoPage({ onNavigate }: PresupuestoPageProps) {
     const ajustes = useMemo(() => getAjustesIniciales(), [])
     const [presupuesto, setPresupuesto] = useState(() => ajustes?.presupuesto ?? 0)
+    const [offset, setOffset] = useState(0)
 
     // 'Diarios' ya no aplica — si existía en localStorage lo tratamos como 'Mensual'
     const periodo: 'Mensual' | 'Semanal' =
@@ -38,11 +39,8 @@ export function PresupuestoPage({ onNavigate }: PresupuestoPageProps) {
     const labels = labelPorPeriodo[periodo]
     const meta = useMemo(() => calcularMeta(presupuesto, periodo), [presupuesto, periodo])
 
-    // Gasto real según el período: semanal para Mensual, diario para Semanal
-    const gastoReal = useMemo(
-        () => (periodo === 'Mensual' ? getGastoSemanaActual() : getGastoDiaActual()),
-        []
-    )
+    const gastoReal = periodo === 'Mensual' ? getGastoSemana(offset) : getGastoDia(offset)
+    const periodoLabel = periodo === 'Mensual' ? labelSemana(offset) : labelDia(offset)
 
     const excedido = Math.max(0, gastoReal - meta)
     const estado = getEstado(gastoReal, meta)
@@ -86,22 +84,33 @@ export function PresupuestoPage({ onNavigate }: PresupuestoPageProps) {
                 </h1>
 
                 <div className="mt-6 flex flex-col">
-                    <BudgetInfoRow
-                        label={labels.presupuesto}
-                        value={formatCOP(presupuesto)}
-                    />
-                    <BudgetInfoRow
-                        label={labels.meta}
-                        value={formatCOP(meta)}
-                    />
-                    <BudgetInfoRow
-                        label={labels.gasto}
-                        value={formatCOP(gastoReal)}
-                    />
-                    <BudgetInfoRow
-                        label="Te pasaste por:"
-                        value={formatCOP(excedido)}
-                    />
+                    <BudgetInfoRow label={labels.presupuesto} value={formatCOP(presupuesto)} />
+                    <BudgetInfoRow label={labels.meta} value={formatCOP(meta)} />
+
+                    {/* Paginación */}
+                    <div className="flex items-center justify-between border-b border-zinc-300 py-3">
+                        <button
+                            onClick={() => setOffset((o) => o - 1)}
+                            className="rounded-lg px-3 py-1 text-xl text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+                            aria-label="Período anterior"
+                        >
+                            ‹
+                        </button>
+                        <span className="text-[14px] font-semibold text-zinc-600 sm:text-xl">
+                            {periodoLabel}
+                        </span>
+                        <button
+                            onClick={() => setOffset((o) => o + 1)}
+                            disabled={offset >= 0}
+                            className="rounded-lg px-3 py-1 text-xl text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 disabled:opacity-30"
+                            aria-label="Período siguiente"
+                        >
+                            ›
+                        </button>
+                    </div>
+
+                    <BudgetInfoRow label={labels.gasto} value={formatCOP(gastoReal)} />
+                    <BudgetInfoRow label="Te pasaste por:" value={formatCOP(excedido)} />
                 </div>
 
                 <div className="mt-8 flex flex-col gap-4">
