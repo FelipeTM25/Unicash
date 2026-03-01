@@ -16,7 +16,7 @@ const tabs: Array<{ id: BottomNavTab; label: string; icon: typeof LuHouse }> = [
 
 export function BottomNavBar({ activeTab = 'home' }: BottomNavBarProps) {
     return (
-        <nav className="overflow-hidden rounded-t-[2.25rem] bg-zinc-400">
+        <nav className="overflow-hidden  bg-zinc-400">
             <ul className="grid grid-cols-4">
                 {tabs.map((tab) => {
                     const isActive = tab.id === activeTab
@@ -31,7 +31,7 @@ export function BottomNavBar({ activeTab = 'home' }: BottomNavBarProps) {
                                     }`}
                             >
                                 <Icon className="h-11 w-11" />
-                                <span className="text-[22px] leading-none">{tab.label}</span>
+                                <span className="text-[14px] leading-none">{tab.label}</span>
                             </button>
                         </li>
                     )
