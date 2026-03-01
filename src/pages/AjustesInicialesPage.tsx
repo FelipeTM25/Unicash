@@ -81,7 +81,11 @@ function getInitialFormData(): AjustesInicialesFormData {
     }
 }
 
-export function AjustesIniciales() {
+type AjustesInicialesProps = {
+    onContinue?: () => void
+}
+
+export function AjustesIniciales({ onContinue }: AjustesInicialesProps) {
     const [formData, setFormData] = useState<AjustesInicialesFormData>(getInitialFormData)
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -99,6 +103,7 @@ export function AjustesIniciales() {
         }
 
         window.localStorage.setItem(AJUSTES_STORAGE_KEY, JSON.stringify(dataToSave))
+        onContinue?.()
     }
 
     return (

@@ -13,7 +13,13 @@ function formatAmount(value: number): string {
     }).format(value)
 }
 
-export function HomePage() {
+import type { PageName } from '../types/navigation'
+
+type HomePageProps = {
+    onNavigate?: (page: PageName) => void
+}
+
+export function HomePage({ onNavigate }: HomePageProps) {
     const [movementInput, setMovementInput] = useState('')
     const [totalUsed] = useState(0)
 
@@ -62,7 +68,7 @@ export function HomePage() {
                 <div className="h-30" aria-hidden />
             </MobileScreen>
             <div className="fixed inset-x-0 bottom-0 z-40 w-full">
-                <BottomNavBar activeTab="home" />
+                <BottomNavBar activeTab="home" onTabChange={onNavigate} />
             </div>
         </>
     )
