@@ -54,7 +54,7 @@ export function AjustesPage({ onNavigate }: AjustesPageProps) {
                     <AjustesMenuItem label="Editar Categorías" onClick={() => onNavigate?.('editar-categorias')} />
                     <AjustesMenuItem label="Cambiar Presupuesto" onClick={() => setModalEditar(true)} />
                     <AjustesMenuItem label="Resetear Datos" onClick={() => setModalResetear(true)} />
-                    <AjustesMenuItem label="Historial de Movimientos" />
+                    <AjustesMenuItem label="Historial de Movimientos" onClick={() => onNavigate?.('historial')} />
                 </div>
             </MobileScreen>
 

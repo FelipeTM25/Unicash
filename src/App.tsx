@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { AjustesIniciales } from './pages/AjustesInicialesPage'
 import { AjustesPage } from './pages/AjustesPage'
 import { EditarCategoriasPage } from './pages/EditarCategoriasPage'
+import { HistorialMovimientosPage } from './pages/HistorialMovimientosPage'
 import { HomePage } from './pages/HomePage'
 import { InicioPage } from './pages/InicioPage'
 import { PresupuestoPage } from './pages/PresupuestoPage'
@@ -34,6 +35,10 @@ export function App() {
 
   if (currentPage === 'editar-categorias') {
     return <EditarCategoriasPage onNavigate={setCurrentPage} />
+  }
+
+  if (currentPage === 'historial') {
+    return <HistorialMovimientosPage onNavigate={setCurrentPage} />
   }
 
   return <InicioPage onStart={handleComenzar} />
