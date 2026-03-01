@@ -15,7 +15,7 @@ export function InicioPage({ onStart }: InicioPageProps) {
                 <h1 className="mt-6 text-5xl font-bold tracking-wide text-logo sm:mt-16 sm:text-6xl">UNICASH</h1>
 
                 <div className="mt-auto w-full pb-16 sm:pb-20">
-                    <PrimaryButton text="Comenzar" onClick={onStart} className="h-16 text-[22px] sm:h-18 sm:text-3xl" />
+                    <PrimaryButton text="Comenzar" onClick={onStart} className=" text-zinc-100 h-16 text-[20px] sm:h-18 sm:text-3xl" />
                 </div>
             </div>
         </MobileScreen>

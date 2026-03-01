@@ -48,7 +48,7 @@ export function EditarCategoriasPage({ onNavigate }: EditarCategoriasPageProps) 
                 <TopBrandTitle />
 
                 <div className="mt-4">
-                    <h1 className="text-2xl font-bold text-zinc-950 sm:text-4xl">
+                    <h1 className="text-2xl font-bold text-title sm:text-4xl">
                         Editar Categorías
                     </h1>
                 </div>

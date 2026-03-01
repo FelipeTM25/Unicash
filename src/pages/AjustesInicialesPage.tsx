@@ -140,7 +140,7 @@ export function AjustesIniciales({ onContinue }: AjustesInicialesProps) {
                 </div>
 
                 <div className="mt-4 pb-4 pt-6 sm:pb-8 sm:pt-10">
-                    <PrimaryButton text="Continuar" type="submit" />
+                    <PrimaryButton text="Continuar" type="submit" className='text-zinc-100 text-[20px]' />
                 </div>
             </form>
         </MobileScreen>

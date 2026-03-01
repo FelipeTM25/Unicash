@@ -9,7 +9,7 @@ type CategoriaItemProps = {
 export function CategoriaItem({ label, onEdit, onDelete }: CategoriaItemProps) {
     return (
         <div className="flex items-center justify-between border-b border-zinc-300 py-4">
-            <p className="text-[16px] font-semibold text-zinc-900 sm:text-2xl">{label}</p>
+            <p className="text-[16px] font-semibold text-label sm:text-2xl">{label}</p>
             <div className="flex gap-4">
                 <button
                     onClick={onEdit}
