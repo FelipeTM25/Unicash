@@ -7,7 +7,7 @@ export function StartButton({ onClick }: StartButtonProps) {
         <button
             type="button"
             onClick={onClick}
-            className="w-full rounded-2xl bg-zinc-400 py-4 text-3xl font-medium text-zinc-100 sm:py-5 sm:text-4xl"
+            className="w-full rounded-2xl bg-button-primary py-4 text-3xl font-medium text-zinc-100 sm:py-5 sm:text-4xl"
         >
             Comenzar
         </button>
