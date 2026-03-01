@@ -2,6 +2,7 @@
 @import "tailwindcss";
 
 @theme {
+    --color-root-bg: #f5fbf5;
     --color-button-primary: #79C9B2;
     --color-title: #4DBA9A;
     --color-logo: #173B63;
@@ -12,7 +13,7 @@
 :root {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color: #18181b;
-    background-color: #f5fbf5;
+    background-color: var(--color-root-bg);
 
 }
 
