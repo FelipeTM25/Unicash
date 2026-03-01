@@ -6,7 +6,7 @@ import { EditarPresupuestoModal } from '../components/EditarPresupuestoModal'
 import { MobileScreen } from '../components/MobileScreen'
 import { PrimaryButton } from '../components/PrimaryButton'
 import { TopBrandTitle } from '../components/TopBrandTitle'
-import { calcularMetaSemanal, getAjustesIniciales } from '../Data/ajustesStorage'
+import { calcularMetaSecundaria, getAjustesIniciales, labelMetaSecundaria } from '../Data/ajustesStorage'
 import { getConsejoAleatorio, getEstado } from '../Data/consejos'
 import type { periodoOptions } from '../Data/periodoOptions'
 
@@ -17,7 +17,6 @@ type PeriodoOption = (typeof periodoOptions)[number]
 const labelPorPeriodo: Record<PeriodoOption, string> = {
     Mensual: 'Presupuesto mensual:',
     Semanal: 'Presupuesto semanal:',
-    Diarios: 'Presupuesto diario:',
 }
 
 type PresupuestoPageProps = {
@@ -31,14 +30,15 @@ function formatCOP(value: number): string {
 export function PresupuestoPage({ onNavigate }: PresupuestoPageProps) {
     const ajustes = useMemo(() => getAjustesIniciales(), [])
     const [presupuesto, setPresupuesto] = useState(() => ajustes?.presupuesto ?? 0)
-    const metaSemanal = useMemo(() => ajustes
-        ? calcularMetaSemanal({ ...ajustes, presupuesto })
+    const metaSecundaria = useMemo(() => ajustes
+        ? calcularMetaSecundaria({ ...ajustes, presupuesto })
         : 0, [ajustes, presupuesto])
+    const labelMeta = ajustes ? labelMetaSecundaria(ajustes.periodo) : 'Meta recomendada:'
 
     // Gasto semanal: en 0 hasta que exista el módulo de movimientos
     const gastoSemanal = 0
-    const excedido = Math.max(0, gastoSemanal - metaSemanal)
-    const estado = getEstado(gastoSemanal, metaSemanal)
+    const excedido = Math.max(0, gastoSemanal - metaSecundaria)
+    const estado = getEstado(gastoSemanal, metaSecundaria)
 
     const [modalConsejos, setModalConsejos] = useState(false)
     const [consejo, setConsejo] = useState('')
@@ -90,8 +90,8 @@ export function PresupuestoPage({ onNavigate }: PresupuestoPageProps) {
                         value={formatCOP(presupuesto)}
                     />
                     <BudgetInfoRow
-                        label="Meta semanal recomendada:"
-                        value={formatCOP(metaSemanal)}
+                        label={labelMeta}
+                        value={formatCOP(metaSecundaria)}
                     />
                     <BudgetInfoRow
                         label="Esta semana has usado:"

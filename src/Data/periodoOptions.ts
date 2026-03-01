@@ -1,1 +1,1 @@
-export const periodoOptions = ['Mensual', 'Semanal', 'Diarios'] as const
+export const periodoOptions = ['Mensual', 'Semanal'] as const

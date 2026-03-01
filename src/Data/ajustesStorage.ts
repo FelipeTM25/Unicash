@@ -35,10 +35,17 @@ export function getAjustesIniciales(): AjustesInicialesData | null {
     }
 }
 
-export function calcularMetaSemanal(data: AjustesInicialesData): number {
+// Mensual → meta semanal (÷4) | Semanal → meta diaria (÷7)
+export function calcularMetaSecundaria(data: AjustesInicialesData): number {
     switch (data.periodo) {
         case 'Mensual': return Math.round(data.presupuesto / 4)
-        case 'Semanal': return data.presupuesto
-        case 'Diarios': return data.presupuesto * 7
+        case 'Semanal': return Math.round(data.presupuesto / 7)
+    }
+}
+
+export function labelMetaSecundaria(periodo: AjustesInicialesData['periodo']): string {
+    switch (periodo) {
+        case 'Mensual': return 'Meta semanal recomendada:'
+        case 'Semanal': return 'Meta diaria recomendada:'
     }
 }
