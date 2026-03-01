@@ -90,7 +90,7 @@ export function EditarCategoriasPage({ onNavigate }: EditarCategoriasPageProps) 
                 />
             )}
 
-            <div className="fixed inset-x-0 bottom-0 z-40 w-full">
+            <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 w-full">
                 <div className="flex justify-center bg-transparent py-3">
                     <button
                         onClick={() => setMostrarAnadir(true)}

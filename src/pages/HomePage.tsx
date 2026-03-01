@@ -67,7 +67,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 />
             )}
 
-            <div className="fixed inset-x-0 bottom-0 z-40 w-full">
+            <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 w-full">
                 <BottomNavBar activeTab="home" onTabChange={onNavigate} />
             </div>
         </>

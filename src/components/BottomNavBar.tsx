@@ -17,7 +17,7 @@ const tabs: Array<{ id: BottomNavTab; label: string; icon: typeof LuHouse }> = [
 
 export function BottomNavBar({ activeTab = 'home', onTabChange }: BottomNavBarProps) {
     return (
-        <nav className="overflow-hidden  bg-zinc-400">
+        <nav className="overflow-hidden rounded-t-xl border-t border-zinc-300 bg-transparent shadow-lg backdrop-blur-sm ">
             <ul className="grid grid-cols-4">
                 {tabs.map((tab) => {
                     const isActive = tab.id === activeTab
@@ -29,7 +29,7 @@ export function BottomNavBar({ activeTab = 'home', onTabChange }: BottomNavBarPr
                                 type="button"
                                 aria-current={isActive ? 'page' : undefined}
                                 onClick={() => onTabChange?.(tab.id)}
-                                className={`flex w-full flex-col items-center justify-center gap-1 py-5 transition-colors duration-200 ${isActive ? 'bg-zinc-700 text-zinc-100' : 'bg-zinc-400 text-zinc-950'
+                                className={`flex w-full flex-col items-center justify-center gap-1 py-3 transition-colors duration-200 ${isActive ? 'bg-title/40 text-root-bg' : 'bg-transparent text-zinc-950'
                                     }`}
                             >
                                 <Icon className="h-11 w-11" />

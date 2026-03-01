@@ -234,7 +234,7 @@ export function ReportesPage({ onNavigate }: ReportesPageProps) {
                 <div className="h-32" aria-hidden />
             </MobileScreen>
 
-            <div className="fixed inset-x-0 bottom-0 z-40 w-full">
+            <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 w-full">
                 <BottomNavBar activeTab="reportes" onTabChange={onNavigate} />
             </div>
         </>

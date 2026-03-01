@@ -128,7 +128,7 @@ export function PresupuestoPage({ onNavigate }: PresupuestoPageProps) {
                 <div className="h-30" aria-hidden />
             </MobileScreen>
 
-            <div className="fixed inset-x-0 bottom-0 z-40 w-full">
+            <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 w-full">
                 <BottomNavBar activeTab="presupuesto" onTabChange={onNavigate} />
             </div>
         </>
