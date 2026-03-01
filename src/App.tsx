@@ -6,6 +6,7 @@ import { HistorialMovimientosPage } from './pages/HistorialMovimientosPage'
 import { HomePage } from './pages/HomePage'
 import { InicioPage } from './pages/InicioPage'
 import { PresupuestoPage } from './pages/PresupuestoPage'
+import { ReportesPage } from './pages/ReportesPage'
 import { getAjustesIniciales } from './Data/ajustesStorage'
 import type { PageName } from './types/navigation'
 
@@ -27,6 +28,10 @@ export function App() {
 
   if (currentPage === 'presupuesto') {
     return <PresupuestoPage onNavigate={setCurrentPage} />
+  }
+
+  if (currentPage === 'reportes') {
+    return <ReportesPage onNavigate={setCurrentPage} />
   }
 
   if (currentPage === 'ajustes') {
