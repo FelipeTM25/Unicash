@@ -1,15 +1,24 @@
 import { useState } from 'react'
-import { ComencemosPage } from './pages/ComencemosPage'
+import { AjustesIniciales } from './pages/AjustesInicialesPage'
+import { HomePage } from './pages/HomePage'
 import { InicioPage } from './pages/InicioPage'
-
-type PageName = 'inicio' | 'comencemos'
+import { PresupuestoPage } from './pages/PresupuestoPage'
+import type { PageName } from './types/navigation'
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState<PageName>('inicio')
+  const [currentPage, setCurrentPage] = useState<PageName>('presupuesto')
 
-  if (currentPage === 'comencemos') {
-    return <ComencemosPage />
+  if (currentPage === 'ajustes-iniciales') {
+    return <AjustesIniciales onContinue={() => setCurrentPage('home')} />
   }
 
-  return <InicioPage onStart={() => setCurrentPage('comencemos')} />
+  if (currentPage === 'home') {
+    return <HomePage onNavigate={setCurrentPage} />
+  }
+
+  if (currentPage === 'presupuesto') {
+    return <PresupuestoPage onNavigate={setCurrentPage} />
+  }
+
+  return <InicioPage onStart={() => setCurrentPage('ajustes-iniciales')} />
 }

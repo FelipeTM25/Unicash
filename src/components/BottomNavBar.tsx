@@ -5,6 +5,7 @@ type BottomNavTab = 'home' | 'reportes' | 'presupuesto' | 'ajustes'
 
 type BottomNavBarProps = {
     activeTab?: BottomNavTab
+    onTabChange?: (tab: BottomNavTab) => void
 }
 
 const tabs: Array<{ id: BottomNavTab; label: string; icon: typeof LuHouse }> = [
@@ -14,7 +15,7 @@ const tabs: Array<{ id: BottomNavTab; label: string; icon: typeof LuHouse }> = [
     { id: 'ajustes', label: 'Ajustes', icon: LuCircleUserRound },
 ]
 
-export function BottomNavBar({ activeTab = 'home' }: BottomNavBarProps) {
+export function BottomNavBar({ activeTab = 'home', onTabChange }: BottomNavBarProps) {
     return (
         <nav className="overflow-hidden  bg-zinc-400">
             <ul className="grid grid-cols-4">
@@ -27,6 +28,7 @@ export function BottomNavBar({ activeTab = 'home' }: BottomNavBarProps) {
                             <button
                                 type="button"
                                 aria-current={isActive ? 'page' : undefined}
+                                onClick={() => onTabChange?.(tab.id)}
                                 className={`flex w-full flex-col items-center justify-center gap-1 py-5 transition-colors duration-200 ${isActive ? 'bg-zinc-700 text-zinc-100' : 'bg-zinc-400 text-zinc-950'
                                     }`}
                             >

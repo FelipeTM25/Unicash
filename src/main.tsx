@@ -4,9 +4,10 @@ import './index.css'
 import { AjustesIniciales } from './pages/AjustesInicialesPage.tsx'
 import { InicioPage } from './pages/InicioPage.tsx'
 import { HomePage } from './pages/HomePage.tsx'
+import { PresupuestoPage } from './pages/PresupuestoPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <HomePage />
+    <PresupuestoPage />
   </StrictMode>,
 )
