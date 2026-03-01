@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import { AjustesMenuItem } from '../components/AjustesMenuItem'
 import { BottomNavBar } from '../components/BottomNavBar'
+import { ConfirmacionModal } from '../components/ConfirmacionModal'
 import { EditarPresupuestoModal } from '../components/EditarPresupuestoModal'
 import { MobileScreen } from '../components/MobileScreen'
 import { TopBrandTitle } from '../components/TopBrandTitle'
-import { getAjustesIniciales } from '../Data/ajustesStorage'
+import { AJUSTES_STORAGE_KEY, getAjustesIniciales } from '../Data/ajustesStorage'
 import type { PageName } from '../types/navigation'
 
 type AjustesPageProps = {
@@ -13,7 +14,14 @@ type AjustesPageProps = {
 
 export function AjustesPage({ onNavigate }: AjustesPageProps) {
     const [modalEditar, setModalEditar] = useState(false)
+    const [modalResetear, setModalResetear] = useState(false)
     const ajustes = getAjustesIniciales()
+
+    function handleResetear() {
+        window.localStorage.removeItem(AJUSTES_STORAGE_KEY)
+        setModalResetear(false)
+        onNavigate?.('inicio')
+    }
 
     return (
         <>
@@ -22,6 +30,16 @@ export function AjustesPage({ onNavigate }: AjustesPageProps) {
                     presupuestoActual={ajustes.presupuesto}
                     onClose={() => setModalEditar(false)}
                     onGuardado={() => setModalEditar(false)}
+                />
+            )}
+
+            {modalResetear && (
+                <ConfirmacionModal
+                    mensaje="¿Estás seguro de que deseas resetear todos los datos? Esta acción no se puede deshacer."
+                    labelConfirmar="Sí, resetear"
+                    labelCancelar="Cancelar"
+                    onConfirmar={handleResetear}
+                    onCancelar={() => setModalResetear(false)}
                 />
             )}
 
@@ -35,7 +53,7 @@ export function AjustesPage({ onNavigate }: AjustesPageProps) {
                 <div className="mt-6 flex flex-col">
                     <AjustesMenuItem label="Editar Categorías" />
                     <AjustesMenuItem label="Cambiar Presupuesto" onClick={() => setModalEditar(true)} />
-                    <AjustesMenuItem label="Resetear Datos" />
+                    <AjustesMenuItem label="Resetear Datos" onClick={() => setModalResetear(true)} />
                     <AjustesMenuItem label="Historial de Movimientos" />
                 </div>
             </MobileScreen>
