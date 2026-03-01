@@ -8,11 +8,11 @@ type BottomNavBarProps = {
     onTabChange?: (tab: BottomNavTab) => void
 }
 
-const tabs: Array<{ id: BottomNavTab; label: string; icon: typeof LuHouse }> = [
-    { id: 'home', label: 'Home', icon: LuHouse },
-    { id: 'reportes', label: 'Reportes', icon: LuTrendingUp },
-    { id: 'presupuesto', label: 'Presupuesto', icon: HiOutlineCurrencyDollar },
-    { id: 'ajustes', label: 'Ajustes', icon: LuCircleUserRound },
+const tabs: Array<{ id: BottomNavTab; label: string; icon: typeof LuHouse; iconClassName: string }> = [
+    { id: 'home', label: 'Home', icon: LuHouse, iconClassName: 'h-9 w-9' },
+    { id: 'reportes', label: 'Reportes', icon: LuTrendingUp, iconClassName: 'h-9 w-9' },
+    { id: 'presupuesto', label: 'Presupuesto', icon: HiOutlineCurrencyDollar, iconClassName: 'h-10 w-10' },
+    { id: 'ajustes', label: 'Ajustes', icon: LuCircleUserRound, iconClassName: 'h-9 w-9' },
 ]
 
 export function BottomNavBar({ activeTab = 'home', onTabChange }: BottomNavBarProps) {
@@ -32,7 +32,9 @@ export function BottomNavBar({ activeTab = 'home', onTabChange }: BottomNavBarPr
                                 className={`flex w-full flex-col items-center justify-center gap-1 py-3 transition-colors duration-200 ${isActive ? 'bg-title/40 text-root-bg' : 'bg-transparent text-zinc-950'
                                     }`}
                             >
-                                <Icon className="h-11 w-11" />
+                                <span className="flex h-10 items-center justify-center">
+                                    <Icon className={tab.iconClassName} />
+                                </span>
                                 <span className="text-[14px] leading-none">{tab.label}</span>
                             </button>
                         </li>
