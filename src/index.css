@@ -26,6 +26,28 @@ h6 {
     font-family: 'Rubik', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+h1 {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+    text-align: center;
+
+    .leading-tight {
+        --tw-leading: var(--leading-tight)
+            /* 1.25 */
+        ;
+        line-height: var(--leading-tight)
+            /* 1.25 */
+        ;
+    }
+
+    @property --tw-leading {
+        syntax: "*";
+        inherits: false;
+    }
+
+
+}
+
 * {
     box-sizing: border-box;
 
