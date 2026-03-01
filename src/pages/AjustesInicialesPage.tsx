@@ -91,7 +91,7 @@ export function AjustesIniciales() {
         <MobileScreen>
             <TopBrandTitle />
 
-            <h1 className="mt-4 text-center text-3xl leading-tight font-bold text-zinc-900 sm:text-6xl" >Comencemos</h1>
+            <h1 className="mt-4 text-center text-3xl leading-tight font-bold text-title sm:text-6xl" >Comencemos</h1>
             <p className="mt-20 text-[20px] leading-tight text-zinc-900 sm:text-3xl">Ingresa los siguientes datos:</p>
 
             <form onSubmit={handleSubmit} className="mt-8 flex flex-1 flex-col sm:mt-8">

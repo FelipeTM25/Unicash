@@ -1,10 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Rubik:wght@600;700&display=swap');
 @import "tailwindcss";
 
+@theme {
+    --color-button-primary: #90a955;
+    --color-title: #31572c;
+    --color-logo: #132a13;
+    --color-label: #4f772d;
+    --color-border: #132a13;
+}
+
 :root {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color: #18181b;
-    background-color: #e4e4e7;
+    background-color: #f5fbf5;
+
 }
 
 h1,

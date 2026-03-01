@@ -13,14 +13,14 @@ export function SelectField<TOption extends string>({ label, value, onValueChang
 
     return (
         <label htmlFor={selectId} className="flex w-full flex-col gap-3">
-            <span className="text-[16px] leading-none font-semibold text-zinc-900 sm:text-3xl">{label}</span>
+            <span className="text-[16px] leading-none font-semibold text-label sm:text-3xl">{label}</span>
 
             <div className="relative">
                 <select
                     id={selectId}
                     value={value}
                     onChange={(event) => onValueChange(event.target.value as TOption)}
-                    className="h-12 w-full appearance-none rounded-2xl border-2 border-zinc-800 bg-transparent px-4 pr-12 text-[15px] font-normal text-zinc-600 outline-none sm:h-18 sm:px-5 sm:pr-14 sm:text-3xl"
+                    className="h-12 w-full appearance-none rounded-2xl border-2 border-border bg-transparent px-4 pr-12 text-[15px] font-normal text-zinc-600 outline-none sm:h-18 sm:px-5 sm:pr-14 sm:text-3xl"
                 >
                     {options.map((option) => (
                         <option key={option} value={option}>
