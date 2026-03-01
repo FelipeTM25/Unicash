@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AjustesIniciales } from './pages/AjustesInicialesPage'
 import { AjustesPage } from './pages/AjustesPage'
+import { EditarCategoriasPage } from './pages/EditarCategoriasPage'
 import { HomePage } from './pages/HomePage'
 import { InicioPage } from './pages/InicioPage'
 import { PresupuestoPage } from './pages/PresupuestoPage'
@@ -29,6 +30,10 @@ export function App() {
 
   if (currentPage === 'ajustes') {
     return <AjustesPage onNavigate={setCurrentPage} />
+  }
+
+  if (currentPage === 'editar-categorias') {
+    return <EditarCategoriasPage onNavigate={setCurrentPage} />
   }
 
   return <InicioPage onStart={handleComenzar} />
