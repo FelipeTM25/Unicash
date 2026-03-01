@@ -1,23 +1,37 @@
-type SelectFieldProps = {
+import { useId } from 'react'
+
+type SelectFieldProps<TOption extends string> = {
     label: string
-    value: string
+    value: TOption
+    onValueChange: (value: TOption) => void
+    options: readonly TOption[]
 }
 
-export function SelectField({ label, value }: SelectFieldProps) {
+export function SelectField<TOption extends string>({ label, value, onValueChange, options }: SelectFieldProps<TOption>) {
+    const selectId = useId()
+
     return (
-        <div className="flex w-full flex-col gap-3">
-            <div className="flex items-center justify-between">
-                <span className="text-[16px] leading-none font-semibold text-zinc-900 sm:text-3xl">{label}</span>
+        <label htmlFor={selectId} className="flex w-full flex-col gap-3">
+            <span className="text-[16px] leading-none font-semibold text-zinc-900 sm:text-3xl">{label}</span>
 
+            <div className="relative">
+                <select
+                    id={selectId}
+                    value={value}
+                    onChange={(event) => onValueChange(event.target.value as TOption)}
+                    className="h-12 w-full appearance-none rounded-2xl border-2 border-zinc-800 bg-transparent px-4 pr-12 text-[15px] font-normal text-zinc-600 outline-none sm:h-18 sm:px-5 sm:pr-14 sm:text-3xl"
+                >
+                    {options.map((option) => (
+                        <option key={option} value={option}>
+                            {option}
+                        </option>
+                    ))}
+                </select>
+
+                <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-4xl font-semibold text-zinc-900 sm:right-5 sm:text-5xl">
+                    ⌄
+                </span>
             </div>
-
-            <button
-                type="button"
-                className="flex h-12 w-full items-center justify-between rounded-2xl border-2 border-zinc-800 px-4 sm:h-18 sm:px-5"
-            >
-                <span className="text-[15px] font-normal text-zinc-600 sm:text-3xl">{value}</span>
-                <span className="text-4xl font-semibold text-zinc-900 sm:text-5xl">⌄</span>
-            </button>
-        </div>
+        </label>
     )
 }

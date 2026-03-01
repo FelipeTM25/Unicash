@@ -1,10 +1,16 @@
+import { useState } from 'react'
 import { ContinueButton } from '../components/ContinueButton'
 import { FormField } from '../components/FormField'
 import { MobileScreen } from '../components/MobileScreen'
 import { SelectField } from '../components/SelectField'
 import { TopBrandTitle } from '../components/TopBrandTitle'
+import { periodoOptions } from '../Data/periodoOptions'
+
+type PeriodoOption = (typeof periodoOptions)[number]
 
 export function AjustesIniciales() {
+    const [periodo, setPeriodo] = useState<PeriodoOption>(periodoOptions[0])
+
     return (
         <MobileScreen>
             <TopBrandTitle />
@@ -15,7 +21,12 @@ export function AjustesIniciales() {
             <div className="mt-6 flex flex-col gap-6 sm:mt-8 sm:gap-6">
                 <FormField label="Nombre" />
                 <FormField label="Presupuesto" prefix="$" type="number" />
-                <SelectField label="Periodo" value="Mes" />
+                <SelectField
+                    label="Periodo"
+                    value={periodo}
+                    onValueChange={setPeriodo}
+                    options={periodoOptions}
+                />
                 <FormField label="Categorías" placeholder="comida, transporte" />
             </div>
 
