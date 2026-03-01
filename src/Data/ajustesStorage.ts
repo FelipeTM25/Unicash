@@ -39,6 +39,5 @@ export function calcularMetaSemanal(data: AjustesInicialesData): number {
     switch (data.periodo) {
         case 'Mensual': return Math.round(data.presupuesto / 4)
         case 'Semanal': return data.presupuesto
-        case 'Diarios': return data.presupuesto * 7
     }
 }
