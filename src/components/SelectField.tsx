@@ -1,4 +1,5 @@
 import { useId } from 'react'
+import { IoChevronDown } from 'react-icons/io5'
 
 type SelectFieldProps<TOption extends string> = {
     label: string
@@ -28,9 +29,10 @@ export function SelectField<TOption extends string>({ label, value, onValueChang
                     ))}
                 </select>
 
-                <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-4xl font-semibold text-zinc-900 sm:right-5 sm:text-5xl">
-                    ⌄
-                </span>
+                <IoChevronDown
+                    aria-hidden
+                    className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-900 sm:right-5 sm:h-7 sm:w-7"
+                />
             </div>
         </label>
     )
