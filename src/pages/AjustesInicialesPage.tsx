@@ -1,8 +1,8 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
-import { ContinueButton } from '../components/ContinueButton'
 import { FormField } from '../components/FormField'
 import { MobileScreen } from '../components/MobileScreen'
+import { PrimaryButton } from '../components/PrimaryButton'
 import { SelectField } from '../components/SelectField'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { periodoOptions } from '../Data/periodoOptions'
@@ -29,6 +29,20 @@ function isPeriodoOption(value: string): value is PeriodoOption {
 function parsePresupuestoToInt(value: string): number | null {
     const presupuesto = Number.parseInt(value, 10)
     return Number.isInteger(presupuesto) && presupuesto >= 0 ? presupuesto : null
+}
+
+function formatPresupuestoWithThousands(value: string): string {
+    if (!value) {
+        return ''
+    }
+
+    const parsedValue = Number.parseInt(value, 10)
+
+    if (!Number.isFinite(parsedValue)) {
+        return ''
+    }
+
+    return new Intl.NumberFormat('es-CO').format(parsedValue)
 }
 
 function getInitialFormData(): AjustesInicialesFormData {
@@ -104,8 +118,9 @@ export function AjustesIniciales() {
                     <FormField
                         label="Presupuesto"
                         prefix="$"
-                        type="number"
-                        value={formData.presupuesto}
+                        type="tel"
+                        inputMode="numeric"
+                        value={formatPresupuestoWithThousands(formData.presupuesto)}
                         onValueChange={(value) => {
                             const onlyDigits = value.replace(/\D/g, '')
                             setFormData((previousData) => ({ ...previousData, presupuesto: onlyDigits }))
@@ -120,7 +135,7 @@ export function AjustesIniciales() {
                 </div>
 
                 <div className="mt-auto pb-4 pt-6 sm:pb-8 sm:pt-10">
-                    <ContinueButton type="submit" />
+                    <PrimaryButton text="Continuar" type="submit" className="h-16 text-[20px] sm:h-18 sm:text-3xl" />
                 </div>
             </form>
         </MobileScreen>

@@ -1,6 +1,6 @@
 import { LogoBadge } from '../components/LogoBadge'
 import { MobileScreen } from '../components/MobileScreen'
-import { StartButton } from '../components/StartButton'
+import { PrimaryButton } from '../components/PrimaryButton'
 
 type InicioPageProps = {
     onStart?: () => void
@@ -15,7 +15,7 @@ export function InicioPage({ onStart }: InicioPageProps) {
                 <h1 className="mt-6 text-5xl font-bold tracking-wide text-logo sm:mt-16 sm:text-6xl">UNICASH</h1>
 
                 <div className="mt-auto w-full pb-16 sm:pb-20">
-                    <StartButton onClick={onStart} />
+                    <PrimaryButton text="Comenzar" onClick={onStart} className="h-16 text-[22px] sm:h-18 sm:text-3xl" />
                 </div>
             </div>
         </MobileScreen>

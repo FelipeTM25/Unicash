@@ -6,6 +6,6 @@ import { InicioPage } from './pages/InicioPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <InicioPage />
+    <AjustesIniciales />
   </StrictMode>,
 )

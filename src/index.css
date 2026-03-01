@@ -2,10 +2,10 @@
 @import "tailwindcss";
 
 @theme {
-    --color-button-primary: #90a955;
-    --color-title: #31572c;
-    --color-logo: #132a13;
-    --color-label: #4f772d;
+    --color-button-primary: #79C9B2;
+    --color-title: #4DBA9A;
+    --color-logo: #173B63;
+    --color-label: #2E7FA3;
     --color-border: #132a13;
 }
 
