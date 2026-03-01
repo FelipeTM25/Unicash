@@ -134,8 +134,8 @@ export function AjustesIniciales() {
                     />
                 </div>
 
-                <div className="mt-auto pb-4 pt-6 sm:pb-8 sm:pt-10">
-                    <PrimaryButton text="Continuar" type="submit" className="h-16 text-[20px] sm:h-18 sm:text-3xl" />
+                <div className="mt-4 pb-4 pt-6 sm:pb-8 sm:pt-10">
+                    <PrimaryButton text="Continuar" type="submit" />
                 </div>
             </form>
         </MobileScreen>
