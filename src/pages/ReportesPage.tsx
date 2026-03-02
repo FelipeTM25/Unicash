@@ -3,6 +3,7 @@ import { LuImage } from 'react-icons/lu'
 import { BottomNavBar } from '../components/BottomNavBar'
 import { MobileScreen } from '../components/MobileScreen'
 import { ReporteAccordionItem } from '../components/ReporteAccordionItem'
+import { ReporteBarChart } from '../components/ReporteBarChart'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { getMovimientos } from '../Data/movimientosStorage'
 import type { PageName } from '../types/navigation'
@@ -155,6 +156,15 @@ export function ReportesPage({ onNavigate }: ReportesPageProps) {
                             <PlaceholderReporte />
                         ) : (
                             <div className="mt-2 rounded-lg px-3">
+                                <ReporteBarChart
+                                    title="Distribución por categoría"
+                                    data={porCategoria.slice(0, 5).map((item) => ({
+                                        name: item.categoria,
+                                        total: item.total,
+                                    }))}
+                                    formatValue={formatCOP}
+                                />
+
                                 {porCategoria.map((item) => (
                                     <FilaResumen
                                         key={item.categoria}
@@ -176,6 +186,15 @@ export function ReportesPage({ onNavigate }: ReportesPageProps) {
                             <PlaceholderReporte />
                         ) : (
                             <div className="mt-2 rounded-lg px-3">
+                                <ReporteBarChart
+                                    title="Movimientos de mayor valor"
+                                    data={porValor.slice(0, 5).map((movimiento) => ({
+                                        name: movimiento.categoria,
+                                        total: movimiento.monto,
+                                    }))}
+                                    formatValue={formatCOP}
+                                />
+
                                 {porValor.map((movimiento) => (
                                     <FilaResumen
                                         key={movimiento.id}
@@ -197,6 +216,15 @@ export function ReportesPage({ onNavigate }: ReportesPageProps) {
                             <PlaceholderReporte />
                         ) : (
                             <div className="mt-2 rounded-lg px-3">
+                                <ReporteBarChart
+                                    title="Gasto total por día"
+                                    data={porDia.slice(0, 5).map((item) => ({
+                                        name: item.fecha,
+                                        total: item.total,
+                                    }))}
+                                    formatValue={formatCOP}
+                                />
+
                                 {porDia.map((item) => (
                                     <FilaResumen
                                         key={item.fecha}
@@ -218,6 +246,15 @@ export function ReportesPage({ onNavigate }: ReportesPageProps) {
                             <PlaceholderReporte />
                         ) : (
                             <div className="mt-2 rounded-lg px-3">
+                                <ReporteBarChart
+                                    title="Comparativo semanal"
+                                    data={reporteSemanal.slice(0, 5).map((item) => ({
+                                        name: `${formatFechaCorta(item.inicio)}-${formatFechaCorta(item.fin)}`,
+                                        total: item.total,
+                                    }))}
+                                    formatValue={formatCOP}
+                                />
+
                                 {reporteSemanal.map((item) => (
                                     <FilaResumen
                                         key={item.inicio}
