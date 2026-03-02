@@ -1,73 +1,97 @@
-# React + TypeScript + Vite
+# Unicash
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web enfocada en registro de gastos personales, presupuesto y visualización de reportes en interfaz móvil.
 
-Currently, two official plugins are available:
+## Wireframes de diseño (Miro)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Miro: [https://miro.com/app/board/uXjVGENDMKA=/]
 
-## React Compiler
+## Tecnologías usadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- TypeScript
+- Vite
+- Tailwind CSS v4
+- React Router DOM (navegación por rutas)
+- Recharts (gráficas)
 
-## Expanding the ESLint configuration
+## Librerías importadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Dependencias principales del proyecto:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- `react`
+- `react-dom`
+- `react-router-dom`
+- `react-icons`
+- `recharts`
+- `tailwindcss`
+- `@tailwindcss/vite`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Herramientas de desarrollo:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- `typescript`
+- `vite`
+- `eslint` + `typescript-eslint`
+- `@vitejs/plugin-react`
+
+## Arquitectura general
+
+La app está organizada por capas simples:
+
+- `src/pages`: vistas principales (Home, Presupuesto, Reportes, Ajustes, etc.)
+- `src/components`: componentes reutilizables de UI y modales
+- `src/Data`: acceso y utilidades de persistencia (localStorage)
+
+## Rutas actuales
+
+- `/` → redirección automática según datos iniciales
+- `/inicio`
+- `/ajustes-iniciales`
+- `/home`
+- `/presupuesto`
+- `/reportes`
+- `/ajustes`
+- `/ajustes/editar-categorias`
+- `/ajustes/historial`
+
+## Persistencia local
+
+La app guarda información en `localStorage` bajo el prefijo `unicash.`
+
+Claves principales:
+
+- `unicash.ajustesIniciales`
+- `unicash.categorias`
+- `unicash.movimientos`
+
+## Scripts disponibles
+
+- `npm run dev` → levanta entorno de desarrollo
+- `npm run build` → compilación TypeScript + build de producción
+- `npm run preview` → previsualización del build
+- `npm run lint` → análisis estático con ESLint
+
+## Cómo ejecutar el proyecto
+
+1. Instalar dependencias:
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Ejecutar en desarrollo:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+3. Abrir en navegador la URL mostrada por Vite (usualmente `http://localhost:5173`).
+
+## Funcionalidades principales
+
+- Registro de ajustes iniciales (nombre, presupuesto, periodo)
+- Registro y eliminación de movimientos
+- Edición de categorías personalizadas
+- Seguimiento de presupuesto por periodo
+- Reportes por categoría, valor, día y semana con gráficas
+- Reseteo completo de datos del usuario
