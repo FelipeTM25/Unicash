@@ -6,13 +6,8 @@ import { MobileScreen } from '../components/MobileScreen'
 import { RegistrarGastoModal } from '../components/RegistrarGastoModal'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { agregarMovimiento, eliminarMovimiento, getMovimientos, type Movimiento } from '../Data/movimientosStorage'
-import type { PageName } from '../types/navigation'
 
-type HistorialMovimientosPageProps = {
-    onNavigate?: (page: PageName) => void
-}
-
-export function HistorialMovimientosPage({ onNavigate }: HistorialMovimientosPageProps) {
+export function HistorialMovimientosPage() {
     const [movimientos, setMovimientos] = useState<Movimiento[]>(() => getMovimientos())
     const [idEliminar, setIdEliminar] = useState<string | null>(null)
     const [mostrarRegistrar, setMostrarRegistrar] = useState(false)
@@ -87,7 +82,7 @@ export function HistorialMovimientosPage({ onNavigate }: HistorialMovimientosPag
                         + Registrar gasto
                     </button>
                 </div>
-                <BottomNavBar activeTab="ajustes" onTabChange={onNavigate} />
+                <BottomNavBar />
             </div>
         </>
     )

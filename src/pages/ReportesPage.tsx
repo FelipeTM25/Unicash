@@ -5,11 +5,6 @@ import { ReporteAccordionItem } from '../components/ReporteAccordionItem'
 import { ReporteBarChart } from '../components/ReporteBarChart'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { getMovimientos } from '../Data/movimientosStorage'
-import type { PageName } from '../types/navigation'
-
-type ReportesPageProps = {
-    onNavigate?: (page: PageName) => void
-}
 
 type SectionId = 'categoria' | 'valor' | 'dia' | 'semanal'
 
@@ -64,7 +59,7 @@ function PlaceholderReporte() {
     )
 }
 
-export function ReportesPage({ onNavigate }: ReportesPageProps) {
+export function ReportesPage() {
     const [openSection, setOpenSection] = useState<SectionId | null>('categoria')
     const movimientos = useMemo(() => getMovimientos(), [])
 
@@ -273,7 +268,7 @@ export function ReportesPage({ onNavigate }: ReportesPageProps) {
             </MobileScreen>
 
             <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 w-full">
-                <BottomNavBar activeTab="reportes" onTabChange={onNavigate} />
+                <BottomNavBar />
             </div>
         </>
     )

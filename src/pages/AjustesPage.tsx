@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AjustesMenuItem } from '../components/AjustesMenuItem'
 import { BottomNavBar } from '../components/BottomNavBar'
 import { ConfirmacionModal } from '../components/ConfirmacionModal'
@@ -8,13 +9,9 @@ import { TopBrandTitle } from '../components/TopBrandTitle'
 import { AJUSTES_STORAGE_KEY, getAjustesIniciales } from '../Data/ajustesStorage'
 import { CATEGORIAS_STORAGE_KEY } from '../Data/categoriasStorage'
 import { MOVIMIENTOS_STORAGE_KEY } from '../Data/movimientosStorage'
-import type { PageName } from '../types/navigation'
 
-type AjustesPageProps = {
-    onNavigate?: (page: PageName) => void
-}
-
-export function AjustesPage({ onNavigate }: AjustesPageProps) {
+export function AjustesPage() {
+    const navigate = useNavigate()
     const [modalEditar, setModalEditar] = useState(false)
     const [modalResetear, setModalResetear] = useState(false)
     const ajustes = getAjustesIniciales()
@@ -32,7 +29,7 @@ export function AjustesPage({ onNavigate }: AjustesPageProps) {
         keysUnicash.forEach((key) => window.localStorage.removeItem(key))
 
         setModalResetear(false)
-        onNavigate?.('inicio')
+        navigate('/')
     }
 
     return (
@@ -63,15 +60,15 @@ export function AjustesPage({ onNavigate }: AjustesPageProps) {
                 </h1>
 
                 <div className="mt-6 flex flex-col">
-                    <AjustesMenuItem label="Editar Categorías" onClick={() => onNavigate?.('editar-categorias')} />
+                    <AjustesMenuItem label="Editar Categorías" onClick={() => navigate('/ajustes/editar-categorias')} />
                     <AjustesMenuItem label="Cambiar Presupuesto" onClick={() => setModalEditar(true)} />
                     <AjustesMenuItem label="Resetear Datos" onClick={() => setModalResetear(true)} />
-                    <AjustesMenuItem label="Historial de Movimientos" onClick={() => onNavigate?.('historial')} />
+                    <AjustesMenuItem label="Historial de Movimientos" onClick={() => navigate('/ajustes/historial')} />
                 </div>
             </MobileScreen>
 
             <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 w-full">
-                <BottomNavBar activeTab="ajustes" onTabChange={onNavigate} />
+                <BottomNavBar />
             </div>
         </>
     )

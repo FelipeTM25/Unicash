@@ -6,17 +6,12 @@ import { RegistrarGastoModal } from '../components/RegistrarGastoModal'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { getAjustesIniciales } from '../Data/ajustesStorage'
 import { agregarMovimiento, getGastoDiaActual } from '../Data/movimientosStorage'
-import type { PageName } from '../types/navigation'
 
 function formatCOP(value: number): string {
     return `$${new Intl.NumberFormat('es-CO').format(value)}`
 }
 
-type HomePageProps = {
-    onNavigate?: (page: PageName) => void
-}
-
-export function HomePage({ onNavigate }: HomePageProps) {
+export function HomePage() {
     const [gastoHoy, setGastoHoy] = useState(() => getGastoDiaActual())
     const [mostrarRegistrar, setMostrarRegistrar] = useState(false)
     const nombreGuardado = getAjustesIniciales()?.nombre ?? ''
@@ -68,7 +63,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             )}
 
             <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 w-full">
-                <BottomNavBar activeTab="home" onTabChange={onNavigate} />
+                <BottomNavBar />
             </div>
         </>
     )

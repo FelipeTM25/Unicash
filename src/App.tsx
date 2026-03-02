@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import { getAjustesIniciales } from './Data/ajustesStorage'
 import { AjustesIniciales } from './pages/AjustesInicialesPage'
 import { AjustesPage } from './pages/AjustesPage'
 import { EditarCategoriasPage } from './pages/EditarCategoriasPage'
@@ -7,44 +8,22 @@ import { HomePage } from './pages/HomePage'
 import { InicioPage } from './pages/InicioPage'
 import { PresupuestoPage } from './pages/PresupuestoPage'
 import { ReportesPage } from './pages/ReportesPage'
-import { getAjustesIniciales } from './Data/ajustesStorage'
-import type { PageName } from './types/navigation'
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState<PageName>('inicio')
+  const hasAjustesIniciales = Boolean(getAjustesIniciales())
 
-  function handleComenzar() {
-    const datosGuardados = getAjustesIniciales()
-    setCurrentPage(datosGuardados ? 'home' : 'ajustes-iniciales')
-  }
-
-  if (currentPage === 'ajustes-iniciales') {
-    return <AjustesIniciales onContinue={() => setCurrentPage('home')} />
-  }
-
-  if (currentPage === 'home') {
-    return <HomePage onNavigate={setCurrentPage} />
-  }
-
-  if (currentPage === 'presupuesto') {
-    return <PresupuestoPage onNavigate={setCurrentPage} />
-  }
-
-  if (currentPage === 'reportes') {
-    return <ReportesPage onNavigate={setCurrentPage} />
-  }
-
-  if (currentPage === 'ajustes') {
-    return <AjustesPage onNavigate={setCurrentPage} />
-  }
-
-  if (currentPage === 'editar-categorias') {
-    return <EditarCategoriasPage onNavigate={setCurrentPage} />
-  }
-
-  if (currentPage === 'historial') {
-    return <HistorialMovimientosPage onNavigate={setCurrentPage} />
-  }
-
-  return <InicioPage onStart={handleComenzar} />
+  return (
+    <Routes>
+      <Route path="/" element={<Navigate to={hasAjustesIniciales ? '/home' : '/inicio'} replace />} />
+      <Route path="/inicio" element={<InicioPage />} />
+      <Route path="/ajustes-iniciales" element={<AjustesIniciales />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/presupuesto" element={<PresupuestoPage />} />
+      <Route path="/reportes" element={<ReportesPage />} />
+      <Route path="/ajustes" element={<AjustesPage />} />
+      <Route path="/ajustes/editar-categorias" element={<EditarCategoriasPage />} />
+      <Route path="/ajustes/historial" element={<HistorialMovimientosPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  )
 }

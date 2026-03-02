@@ -9,16 +9,11 @@ import { TopBrandTitle } from '../components/TopBrandTitle'
 import { getAjustesIniciales } from '../Data/ajustesStorage'
 import { getConsejoAleatorio, getEstado } from '../Data/consejos'
 import { getGastoDia, getGastoSemana, labelDia, labelSemana } from '../Data/movimientosStorage'
-import type { PageName } from '../types/navigation'
 
 const labelPorPeriodo = {
     Mensual: { presupuesto: 'Presupuesto mensual:', meta: 'Meta semanal recomendada:', gasto: 'Has usado:' },
     Semanal: { presupuesto: 'Presupuesto semanal:', meta: 'Meta diaria recomendada:', gasto: 'Has usado:' },
 } as const
-
-type PresupuestoPageProps = {
-    onNavigate?: (page: PageName) => void
-}
 
 function formatCOP(value: number): string {
     return `$${new Intl.NumberFormat('es-CO').format(value)}`
@@ -28,7 +23,7 @@ function calcularMeta(presupuesto: number, periodo: 'Mensual' | 'Semanal'): numb
     return periodo === 'Mensual' ? Math.round(presupuesto / 4) : Math.round(presupuesto / 7)
 }
 
-export function PresupuestoPage({ onNavigate }: PresupuestoPageProps) {
+export function PresupuestoPage() {
     const ajustes = useMemo(() => getAjustesIniciales(), [])
     const [presupuesto, setPresupuesto] = useState(() => ajustes?.presupuesto ?? 0)
     const [offset, setOffset] = useState(0)
@@ -133,7 +128,7 @@ export function PresupuestoPage({ onNavigate }: PresupuestoPageProps) {
             </MobileScreen>
 
             <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 w-full">
-                <BottomNavBar activeTab="presupuesto" onTabChange={onNavigate} />
+                <BottomNavBar />
             </div>
         </>
     )
