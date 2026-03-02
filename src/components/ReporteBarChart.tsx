@@ -20,11 +20,11 @@ export function ReporteBarChart({ title, data, formatValue }: ReporteBarChartPro
 
     return (
         <div className="mb-4 rounded-xl border border-zinc-200 p-3">
-            <p className="mb-3 text-[13px] font-semibold tracking-wide text-zinc-600 uppercase sm:text-base">{title}</p>
+            <p className="mb-3 text-[13px] font-semibold tracking-wide text-zinc-600 uppercase sm:text-base text-center">{title}</p>
 
-            <div className="h-56 w-full">
+            <div className="chart-no-focus h-56 w-full">
                 <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={data} margin={{ top: 4, right: 6, left: 0, bottom: 26 }}>
+                    <BarChart data={data} margin={{ top: 4, right: 6, left: 0, bottom: 26 }} accessibilityLayer={false}>
                         <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" opacity={0.2} vertical={false} />
                         <YAxis
                             type="number"
@@ -46,11 +46,12 @@ export function ReporteBarChart({ title, data, formatValue }: ReporteBarChartPro
                             tick={{ fontSize: 11, fill: 'var(--color-label)' }}
                         />
                         <Tooltip
+                            cursor={false}
                             formatter={(value: number | string | undefined) => formatValue(Number(value ?? 0))}
                             contentStyle={{ borderRadius: 10, borderColor: 'var(--color-border)' }}
                             labelStyle={{ color: 'var(--color-logo)', fontWeight: 600 }}
                         />
-                        <Bar dataKey="total" fill="var(--color-title)" radius={[6, 6, 0, 0]} />
+                        <Bar dataKey="total" fill="var(--color-title)" radius={[6, 6, 0, 0]} stroke="none" activeBar={false} />
                     </BarChart>
                 </ResponsiveContainer>
             </div>
