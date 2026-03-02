@@ -1,5 +1,6 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FormField } from '../components/FormField'
 import { MobileScreen } from '../components/MobileScreen'
 import { PrimaryButton } from '../components/PrimaryButton'
@@ -81,11 +82,8 @@ function getInitialFormData(): AjustesInicialesFormData {
     }
 }
 
-type AjustesInicialesProps = {
-    onContinue?: () => void
-}
-
-export function AjustesIniciales({ onContinue }: AjustesInicialesProps) {
+export function AjustesIniciales() {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState<AjustesInicialesFormData>(getInitialFormData)
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -103,7 +101,7 @@ export function AjustesIniciales({ onContinue }: AjustesInicialesProps) {
         }
 
         window.localStorage.setItem(AJUSTES_STORAGE_KEY, JSON.stringify(dataToSave))
-        onContinue?.()
+        navigate('/home')
     }
 
     return (
@@ -140,7 +138,7 @@ export function AjustesIniciales({ onContinue }: AjustesInicialesProps) {
                 </div>
 
                 <div className="mt-4 pb-4 pt-6 sm:pb-8 sm:pt-10">
-                    <PrimaryButton text="Continuar" type="submit" />
+                    <PrimaryButton text="Continuar" type="submit" className='text-zinc-100 text-[20px]' />
                 </div>
             </form>
         </MobileScreen>

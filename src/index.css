@@ -58,3 +58,11 @@ body {
     min-height: 100vh;
     font-weight: 400;
 }
+
+.chart-no-focus .recharts-wrapper:focus,
+.chart-no-focus .recharts-surface:focus,
+.chart-no-focus .recharts-layer:focus,
+.chart-no-focus [tabindex]:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}

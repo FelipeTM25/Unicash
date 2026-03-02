@@ -7,13 +7,8 @@ import { EditarCategoriaModal } from '../components/EditarCategoriaModal'
 import { MobileScreen } from '../components/MobileScreen'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { getCategorias, saveCategorias } from '../Data/categoriasStorage'
-import type { PageName } from '../types/navigation'
 
-type EditarCategoriasPageProps = {
-    onNavigate?: (page: PageName) => void
-}
-
-export function EditarCategoriasPage({ onNavigate }: EditarCategoriasPageProps) {
+export function EditarCategoriasPage() {
     const [categorias, setCategorias] = useState<string[]>(() => getCategorias())
     const [mostrarAnadir, setMostrarAnadir] = useState(false)
     const [indiceEditar, setIndiceEditar] = useState<number | null>(null)
@@ -48,7 +43,7 @@ export function EditarCategoriasPage({ onNavigate }: EditarCategoriasPageProps) 
                 <TopBrandTitle />
 
                 <div className="mt-4">
-                    <h1 className="text-2xl font-bold text-zinc-950 sm:text-4xl">
+                    <h1 className="text-2xl font-bold text-title sm:text-4xl">
                         Editar Categorías
                     </h1>
                 </div>
@@ -90,7 +85,7 @@ export function EditarCategoriasPage({ onNavigate }: EditarCategoriasPageProps) 
                 />
             )}
 
-            <div className="fixed inset-x-0 bottom-0 z-40 w-full">
+            <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 w-full">
                 <div className="flex justify-center bg-transparent py-3">
                     <button
                         onClick={() => setMostrarAnadir(true)}
@@ -100,7 +95,7 @@ export function EditarCategoriasPage({ onNavigate }: EditarCategoriasPageProps) 
                         + Añadir categoría
                     </button>
                 </div>
-                <BottomNavBar activeTab="ajustes" onTabChange={onNavigate} />
+                <BottomNavBar />
             </div>
         </>
     )

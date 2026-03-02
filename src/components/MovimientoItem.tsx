@@ -33,7 +33,7 @@ export function MovimientoItem({ categoria, monto, fecha, onDelete }: Movimiento
 
             {/* Info */}
             <div className="flex flex-1 flex-col">
-                <p className="text-[15px] font-bold capitalize text-zinc-900 sm:text-xl">
+                <p className="text-[15px] font-bold capitalize text-label sm:text-xl">
                     {categoria.charAt(0) + categoria.slice(1).toLowerCase()}
                 </p>
                 <p className="text-[14px] font-semibold text-zinc-700 sm:text-lg">
