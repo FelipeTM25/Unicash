@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { LogoBadge } from '../components/LogoBadge'
 import { MobileScreen } from '../components/MobileScreen'
-import { PrimaryButton } from '../components/PrimaryButton'
+import { PrimaryButton } from '../components/Buttons/PrimaryButton'
 import { getAjustesIniciales } from '../Data/ajustesStorage'
 
 export function InicioPage() {

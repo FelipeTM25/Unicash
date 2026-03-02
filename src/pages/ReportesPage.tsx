@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
-import { BottomNavBar } from '../components/BottomNavBar'
+import { BottomNavBar } from '../components/Menus/BottomNavBar'
 import { MobileScreen } from '../components/MobileScreen'
-import { ReporteAccordionItem } from '../components/ReporteAccordionItem'
-import { ReporteBarChart } from '../components/ReporteBarChart'
+import { ReporteAccordionItem } from '../components/Menus/ReporteAccordionItem'
+import { ReporteBarChart } from '../components/Graphics/ReporteBarChart'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { getMovimientos } from '../Data/movimientosStorage'
 
@@ -182,14 +182,7 @@ export function ReportesPage() {
                             <PlaceholderReporte />
                         ) : (
                             <div className="mt-2 rounded-lg px-3">
-                                <ReporteBarChart
-                                    title="Movimientos de mayor valor"
-                                    data={porValor.slice(0, 5).map((movimiento) => ({
-                                        name: movimiento.categoria,
-                                        total: movimiento.monto,
-                                    }))}
-                                    formatValue={formatCOP}
-                                />
+
 
                                 {porValor.map((movimiento) => (
                                     <FilaResumen
@@ -214,10 +207,13 @@ export function ReportesPage() {
                             <div className="mt-2 rounded-lg px-3">
                                 <ReporteBarChart
                                     title="Gasto total por día"
-                                    data={porDia.slice(0, 5).map((item) => ({
-                                        name: item.fecha,
-                                        total: item.total,
-                                    }))}
+                                    data={[...porDia]
+                                        .sort((a, b) => (a.fecha > b.fecha ? 1 : -1))
+                                        .slice(0, 5)
+                                        .map((item) => ({
+                                            name: item.fecha,
+                                            total: item.total,
+                                        }))}
                                     formatValue={formatCOP}
                                 />
 

@@ -1,10 +1,10 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { FormField } from '../components/FormField'
+import { FormField } from '../components/Fields/FormField'
 import { MobileScreen } from '../components/MobileScreen'
-import { PrimaryButton } from '../components/PrimaryButton'
-import { SelectField } from '../components/SelectField'
+import { PrimaryButton } from '../components/Buttons/PrimaryButton'
+import { SelectField } from '../components/Fields/SelectField'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { periodoOptions } from '../Data/periodoOptions'
 

@@ -1,9 +1,9 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
-import { FormField } from './FormField'
-import { SelectField } from './SelectField'
-import { getCategorias } from '../Data/categoriasStorage'
-import { fechaHoy } from '../Data/movimientosStorage'
+import { FormField } from '../Fields/FormField'
+import { SelectField } from '../Fields/SelectField'
+import { getCategorias } from '../../Data/categoriasStorage'
+import { fechaHoy } from '../../Data/movimientosStorage'
 
 type RegistrarGastoModalProps = {
     onClose: () => void

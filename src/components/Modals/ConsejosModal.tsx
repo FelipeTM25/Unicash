@@ -1,4 +1,4 @@
-import type { EstadoPresupuesto } from '../Data/consejos'
+import type { EstadoPresupuesto } from '../../Data/consejos'
 
 type ConsejosModalProps = {
     consejo: string

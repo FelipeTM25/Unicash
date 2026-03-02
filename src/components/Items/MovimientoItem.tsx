@@ -1,6 +1,6 @@
 import { FiTrash2 } from 'react-icons/fi'
-import { getCategoriaIconInfo } from '../Data/categoriaIconos'
-import { formatFecha } from '../Data/movimientosStorage'
+import { getCategoriaIconInfo } from '../../Data/categoriaIconos'
+import { formatFecha } from '../../Data/movimientosStorage'
 
 type MovimientoItemProps = {
     categoria: string

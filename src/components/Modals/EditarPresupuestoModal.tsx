@@ -1,7 +1,7 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
-import { FormField } from './FormField'
-import { AJUSTES_STORAGE_KEY, getAjustesIniciales } from '../Data/ajustesStorage'
+import { FormField } from '../Fields/FormField'
+import { AJUSTES_STORAGE_KEY, getAjustesIniciales } from '../../Data/ajustesStorage'
 
 type EditarPresupuestoModalProps = {
     presupuestoActual: number

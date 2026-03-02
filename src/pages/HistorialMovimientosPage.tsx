@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { BottomNavBar } from '../components/BottomNavBar'
-import { ConfirmacionModal } from '../components/ConfirmacionModal'
-import { MovimientoItem } from '../components/MovimientoItem'
+import { BottomNavBar } from '../components/Menus/BottomNavBar'
+import { ConfirmacionModal } from '../components/Modals/ConfirmacionModal'
+import { MovimientoItem } from '../components/Items/MovimientoItem'
 import { MobileScreen } from '../components/MobileScreen'
-import { RegistrarGastoModal } from '../components/RegistrarGastoModal'
+import { RegistrarGastoModal } from '../components/Modals/RegistrarGastoModal'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { agregarMovimiento, eliminarMovimiento, getMovimientos, type Movimiento } from '../Data/movimientosStorage'
 

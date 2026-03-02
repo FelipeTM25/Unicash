@@ -1,15 +1,14 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
-import { FormField } from './FormField'
+import { FormField } from '../Fields/FormField'
 
-type EditarCategoriaModalProps = {
-    categoriaActual: string
+type AnadirCategoriaModalProps = {
     onClose: () => void
-    onGuardado: (nuevoNombre: string) => void
+    onGuardado: (nuevaCategoria: string) => void
 }
 
-export function EditarCategoriaModal({ categoriaActual, onClose, onGuardado }: EditarCategoriaModalProps) {
-    const [nombre, setNombre] = useState(categoriaActual)
+export function AnadirCategoriaModal({ onClose, onGuardado }: AnadirCategoriaModalProps) {
+    const [nombre, setNombre] = useState('')
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -28,7 +27,7 @@ export function EditarCategoriaModal({ categoriaActual, onClose, onGuardado }: E
                 onClick={(e) => e.stopPropagation()}
             >
                 <p className="text-center text-[20px] font-bold text-title sm:text-3xl">
-                    Editar categoría
+                    Añadir categoría
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-5 flex flex-col gap-5">
@@ -44,7 +43,7 @@ export function EditarCategoriaModal({ categoriaActual, onClose, onGuardado }: E
                             type="submit"
                             className="w-full rounded-2xl bg-button-primary py-3 text-[15px] font-medium text-zinc-100 transition-all duration-200 hover:bg-title active:scale-[0.99] sm:text-2xl"
                         >
-                            Guardar
+                            Añadir
                         </button>
                         <button
                             type="button"
