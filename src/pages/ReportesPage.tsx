@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react'
-import { LuImage } from 'react-icons/lu'
 import { BottomNavBar } from '../components/BottomNavBar'
 import { MobileScreen } from '../components/MobileScreen'
 import { ReporteAccordionItem } from '../components/ReporteAccordionItem'
@@ -58,7 +57,9 @@ function FilaResumen({ label, value, secondary }: FilaResumenProps) {
 function PlaceholderReporte() {
     return (
         <div className="mt-2 flex h-56 items-center justify-center">
-            <LuImage className="h-18 w-18 text-zinc-900" />
+            <p className="text-center text-[16px] font-medium text-zinc-500 sm:text-xl">
+                No hay datos actualmente.
+            </p>
         </div>
     )
 }

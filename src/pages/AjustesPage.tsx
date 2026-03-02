@@ -6,6 +6,8 @@ import { EditarPresupuestoModal } from '../components/EditarPresupuestoModal'
 import { MobileScreen } from '../components/MobileScreen'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { AJUSTES_STORAGE_KEY, getAjustesIniciales } from '../Data/ajustesStorage'
+import { CATEGORIAS_STORAGE_KEY } from '../Data/categoriasStorage'
+import { MOVIMIENTOS_STORAGE_KEY } from '../Data/movimientosStorage'
 import type { PageName } from '../types/navigation'
 
 type AjustesPageProps = {
@@ -18,7 +20,17 @@ export function AjustesPage({ onNavigate }: AjustesPageProps) {
     const ajustes = getAjustesIniciales()
 
     function handleResetear() {
-        window.localStorage.removeItem(AJUSTES_STORAGE_KEY)
+        const storageKeys = [
+            AJUSTES_STORAGE_KEY,
+            CATEGORIAS_STORAGE_KEY,
+            MOVIMIENTOS_STORAGE_KEY,
+        ]
+
+        storageKeys.forEach((key) => window.localStorage.removeItem(key))
+
+        const keysUnicash = Object.keys(window.localStorage).filter((key) => key.startsWith('unicash.'))
+        keysUnicash.forEach((key) => window.localStorage.removeItem(key))
+
         setModalResetear(false)
         onNavigate?.('inicio')
     }
