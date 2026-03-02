@@ -29,7 +29,7 @@ export function AjustesPage() {
         keysUnicash.forEach((key) => window.localStorage.removeItem(key))
 
         setModalResetear(false)
-        navigate('/')
+        navigate('/inicio', { replace: true })
     }
 
     return (

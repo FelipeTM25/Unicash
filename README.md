@@ -4,7 +4,7 @@ Aplicación web enfocada en registro de gastos personales, presupuesto y visuali
 
 ## Wireframes de diseño (Miro)
 
-- Miro: [https://miro.com/app/board/uXjVGENDMKA=/]
+- Miro: https://miro.com/app/board/uXjVGENDMKA=/
 
 ## Tecnologías usadas
 

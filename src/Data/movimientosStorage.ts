@@ -1,4 +1,5 @@
 export const MOVIMIENTOS_STORAGE_KEY = 'unicash.movimientos'
+const COLOMBIA_TIME_ZONE = 'America/Bogota'
 
 export type Movimiento = {
     id: string
@@ -41,17 +42,44 @@ export function formatFecha(isoDate: string): string {
     return `${day} / ${month} / ${year}`
 }
 
+function formatIsoDate(date: Date): string {
+    const year = date.getUTCFullYear()
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0')
+    const day = String(date.getUTCDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+}
+
+function parseIsoDate(isoDate: string): Date {
+    const [year, month, day] = isoDate.split('-').map(Number)
+    return new Date(Date.UTC(year, month - 1, day))
+}
+
+function todayIsoInBogota(): string {
+    const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: COLOMBIA_TIME_ZONE,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    }).formatToParts(new Date())
+
+    const year = parts.find((part) => part.type === 'year')?.value ?? '1970'
+    const month = parts.find((part) => part.type === 'month')?.value ?? '01'
+    const day = parts.find((part) => part.type === 'day')?.value ?? '01'
+
+    return `${year}-${month}-${day}`
+}
+
 export function fechaHoy(): string {
-    return new Date().toISOString().slice(0, 10)
+    return todayIsoInBogota()
 }
 
 /** Devuelve la fecha del lunes de la semana actual (YYYY-MM-DD) */
 function inicioSemanaActual(): string {
-    const hoy = new Date()
-    const dia = hoy.getDay() // 0=dom, 1=lun...
+    const hoy = parseIsoDate(fechaHoy())
+    const dia = hoy.getUTCDay() // 0=dom, 1=lun...
     const lunes = new Date(hoy)
-    lunes.setDate(hoy.getDate() - ((dia + 6) % 7))
-    return lunes.toISOString().slice(0, 10)
+    lunes.setUTCDate(hoy.getUTCDate() - ((dia + 6) % 7))
+    return formatIsoDate(lunes)
 }
 
 /** Suma de movimientos en la semana actual (lunes a hoy) */
@@ -73,15 +101,15 @@ export function getGastoDiaActual(): number {
 
 /** Rango ISO de una semana con offset (0 = esta semana, -1 = semana pasada...) */
 function rangoSemana(offset: number): { inicio: string; fin: string } {
-    const hoy = new Date()
-    const dia = hoy.getDay()
+    const hoy = parseIsoDate(fechaHoy())
+    const dia = hoy.getUTCDay()
     const lunes = new Date(hoy)
-    lunes.setDate(hoy.getDate() - ((dia + 6) % 7) + offset * 7)
+    lunes.setUTCDate(hoy.getUTCDate() - ((dia + 6) % 7) + offset * 7)
     const domingo = new Date(lunes)
-    domingo.setDate(lunes.getDate() + 6)
+    domingo.setUTCDate(lunes.getUTCDate() + 6)
     return {
-        inicio: lunes.toISOString().slice(0, 10),
-        fin: domingo.toISOString().slice(0, 10),
+        inicio: formatIsoDate(lunes),
+        fin: formatIsoDate(domingo),
     }
 }
 
@@ -97,9 +125,9 @@ export function getGastoSemana(offset: number): number {
 
 /** Suma de movimientos para el día con offset dado (0=hoy, -1=ayer...) */
 export function getGastoDia(offset: number): number {
-    const d = new Date()
-    d.setDate(d.getDate() + offset)
-    const fecha = d.toISOString().slice(0, 10)
+    const d = parseIsoDate(fechaHoy())
+    d.setUTCDate(d.getUTCDate() + offset)
+    const fecha = formatIsoDate(d)
     return getMovimientos()
         .filter((m) => m.fecha === fecha)
         .reduce((sum, m) => sum + m.monto, 0)
@@ -121,7 +149,16 @@ export function labelSemana(offset: number): string {
 export function labelDia(offset: number): string {
     if (offset === 0) return 'Hoy'
     if (offset === -1) return 'Ayer'
-    const d = new Date()
-    d.setDate(d.getDate() + offset)
-    return d.toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'short' })
+
+    const d = parseIsoDate(fechaHoy())
+    d.setUTCDate(d.getUTCDate() + offset)
+
+    const fechaMediodiaUTC = new Date(`${formatIsoDate(d)}T12:00:00Z`)
+
+    return fechaMediodiaUTC.toLocaleDateString('es-CO', {
+        timeZone: COLOMBIA_TIME_ZONE,
+        weekday: 'long',
+        day: 'numeric',
+        month: 'short',
+    })
 }

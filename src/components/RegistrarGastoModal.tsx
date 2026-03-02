@@ -3,14 +3,11 @@ import { useState } from 'react'
 import { FormField } from './FormField'
 import { SelectField } from './SelectField'
 import { getCategorias } from '../Data/categoriasStorage'
+import { fechaHoy } from '../Data/movimientosStorage'
 
 type RegistrarGastoModalProps = {
     onClose: () => void
     onGuardado: (categoria: string, monto: number, fecha: string) => void
-}
-
-function hoy(): string {
-    return new Date().toISOString().slice(0, 10)
 }
 
 function formatMiles(value: string): string {
@@ -24,7 +21,7 @@ export function RegistrarGastoModal({ onClose, onGuardado }: RegistrarGastoModal
     const categorias = getCategorias()
     const [categoria, setCategoria] = useState(categorias[0] ?? '')
     const [monto, setMonto] = useState('')
-    const [fecha, setFecha] = useState(hoy())
+    const [fecha, setFecha] = useState(fechaHoy())
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
