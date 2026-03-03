@@ -31,7 +31,6 @@ Herramientas de desarrollo:
 
 - `typescript`
 - `vite`
-- `eslint` + `typescript-eslint`
 - `@vitejs/plugin-react`
 
 ## Arquitectura general
