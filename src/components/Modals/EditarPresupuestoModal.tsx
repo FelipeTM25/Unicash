@@ -18,16 +18,21 @@ function formatMiles(value: string): string {
 
 export function EditarPresupuestoModal({ presupuestoActual, onClose, onGuardado }: EditarPresupuestoModalProps) {
     const [valor, setValor] = useState(String(presupuestoActual))
+    const [error, setError] = useState('')
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
         const numero = Number.parseInt(valor, 10)
-        if (!Number.isFinite(numero) || numero < 0) return
+        if (!Number.isFinite(numero) || numero <= 0) {
+            setError('Ingresa un presupuesto mayor a 0.')
+            return
+        }
 
         const actual = getAjustesIniciales()
         if (!actual) return
 
+        setError('')
         const actualizado = { ...actual, presupuesto: numero }
         window.localStorage.setItem(AJUSTES_STORAGE_KEY, JSON.stringify(actualizado))
         onGuardado(numero)
@@ -53,7 +58,13 @@ export function EditarPresupuestoModal({ presupuestoActual, onClose, onGuardado 
                         type="tel"
                         inputMode="numeric"
                         value={formatMiles(valor)}
-                        onValueChange={(v) => setValor(v.replace(/\D/g, ''))}
+                        onValueChange={(v) => {
+                            setValor(v.replace(/\D/g, ''))
+                            if (error) {
+                                setError('')
+                            }
+                        }}
+                        error={error}
                     />
 
                     <div className="flex flex-col gap-3">

@@ -85,14 +85,28 @@ function getInitialFormData(): AjustesInicialesFormData {
 export function AjustesIniciales() {
     const navigate = useNavigate()
     const [formData, setFormData] = useState<AjustesInicialesFormData>(getInitialFormData)
+    const [errors, setErrors] = useState<{ nombre?: string; presupuesto?: string }>({})
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
+        const nextErrors: { nombre?: string; presupuesto?: string } = {}
+
+        if (!formData.nombre.trim()) {
+            nextErrors.nombre = 'Ingresa tu nombre para continuar.'
+        }
+
         const presupuesto = parsePresupuestoToInt(formData.presupuesto)
-        if (presupuesto === null) {
+        if (presupuesto === null || presupuesto <= 0) {
+            nextErrors.presupuesto = 'Ingresa un presupuesto mayor a 0.'
+        }
+
+        if (Object.keys(nextErrors).length > 0) {
+            setErrors(nextErrors)
             return
         }
+
+        setErrors({})
 
         const dataToSave: AjustesInicialesStorageData = {
             nombre: formData.nombre.trim(),
@@ -116,7 +130,13 @@ export function AjustesIniciales() {
                     <FormField
                         label="Nombre"
                         value={formData.nombre}
-                        onValueChange={(value) => setFormData((previousData) => ({ ...previousData, nombre: value }))}
+                        onValueChange={(value) => {
+                            setFormData((previousData) => ({ ...previousData, nombre: value }))
+                            if (errors.nombre) {
+                                setErrors((prev) => ({ ...prev, nombre: undefined }))
+                            }
+                        }}
+                        error={errors.nombre}
                     />
                     <FormField
                         label="Presupuesto"
@@ -127,7 +147,11 @@ export function AjustesIniciales() {
                         onValueChange={(value) => {
                             const onlyDigits = value.replace(/\D/g, '')
                             setFormData((previousData) => ({ ...previousData, presupuesto: onlyDigits }))
+                            if (errors.presupuesto) {
+                                setErrors((prev) => ({ ...prev, presupuesto: undefined }))
+                            }
                         }}
+                        error={errors.presupuesto}
                     />
                     <SelectField
                         label="Periodo"

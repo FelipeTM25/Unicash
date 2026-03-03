@@ -22,12 +22,31 @@ export function RegistrarGastoModal({ onClose, onGuardado }: RegistrarGastoModal
     const [categoria, setCategoria] = useState(categorias[0] ?? '')
     const [monto, setMonto] = useState('')
     const [fecha, setFecha] = useState(fechaHoy())
+    const [errors, setErrors] = useState<{ categoria?: string; monto?: string; fecha?: string }>({})
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
+        const nextErrors: { categoria?: string; monto?: string; fecha?: string } = {}
+
+        if (!categoria) {
+            nextErrors.categoria = 'Selecciona una categoría.'
+        }
+
         const numero = Number.parseInt(monto, 10)
-        if (!Number.isFinite(numero) || numero <= 0) return
-        if (!categoria || !fecha) return
+        if (!Number.isFinite(numero) || numero <= 0) {
+            nextErrors.monto = 'Ingresa un monto mayor a 0.'
+        }
+
+        if (!fecha) {
+            nextErrors.fecha = 'Selecciona una fecha válida.'
+        }
+
+        if (Object.keys(nextErrors).length > 0) {
+            setErrors(nextErrors)
+            return
+        }
+
+        setErrors({})
         onGuardado(categoria, numero, fecha)
     }
 
@@ -48,8 +67,14 @@ export function RegistrarGastoModal({ onClose, onGuardado }: RegistrarGastoModal
                     <SelectField
                         label="Categoría"
                         value={categoria}
-                        onValueChange={setCategoria}
+                        onValueChange={(value) => {
+                            setCategoria(value)
+                            if (errors.categoria) {
+                                setErrors((prev) => ({ ...prev, categoria: undefined }))
+                            }
+                        }}
                         options={categorias}
+                        error={errors.categoria}
                     />
 
                     <FormField
@@ -58,14 +83,26 @@ export function RegistrarGastoModal({ onClose, onGuardado }: RegistrarGastoModal
                         type="tel"
                         inputMode="numeric"
                         value={formatMiles(monto)}
-                        onValueChange={(v) => setMonto(v.replace(/\D/g, ''))}
+                        onValueChange={(v) => {
+                            setMonto(v.replace(/\D/g, ''))
+                            if (errors.monto) {
+                                setErrors((prev) => ({ ...prev, monto: undefined }))
+                            }
+                        }}
+                        error={errors.monto}
                     />
 
                     <FormField
                         label="Fecha"
                         type="date"
                         value={fecha}
-                        onValueChange={setFecha}
+                        onValueChange={(value) => {
+                            setFecha(value)
+                            if (errors.fecha) {
+                                setErrors((prev) => ({ ...prev, fecha: undefined }))
+                            }
+                        }}
+                        error={errors.fecha}
                     />
 
                     <div className="flex flex-col gap-3 pt-1">

@@ -9,11 +9,16 @@ type AnadirCategoriaModalProps = {
 
 export function AnadirCategoriaModal({ onClose, onGuardado }: AnadirCategoriaModalProps) {
     const [nombre, setNombre] = useState('')
+    const [error, setError] = useState('')
 
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
         const trimmed = nombre.trim().toUpperCase()
-        if (!trimmed) return
+        if (!trimmed) {
+            setError('Ingresa un nombre para la categoría.')
+            return
+        }
+        setError('')
         onGuardado(trimmed)
     }
 
@@ -35,7 +40,13 @@ export function AnadirCategoriaModal({ onClose, onGuardado }: AnadirCategoriaMod
                         label="Nombre de la categoría"
                         type="text"
                         value={nombre}
-                        onValueChange={setNombre}
+                        onValueChange={(value) => {
+                            setNombre(value)
+                            if (error) {
+                                setError('')
+                            }
+                        }}
+                        error={error}
                     />
 
                     <div className="flex flex-col gap-3">
