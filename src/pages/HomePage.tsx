@@ -86,7 +86,7 @@ export function HomePage() {
                     onGuardado={handleGuardarGasto}
                 />
             )}
-
+            <div className="h-0 lg:h-28 mdh-28" />
             <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 w-full">
                 <BottomNavBar />
             </div>
