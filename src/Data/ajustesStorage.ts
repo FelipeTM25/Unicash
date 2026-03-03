@@ -35,7 +35,6 @@ export function getAjustesIniciales(): AjustesInicialesData | null {
     }
 }
 
-// Mensual → meta semanal (÷4) | Semanal → meta diaria (÷7)
 export function calcularMetaSecundaria(data: AjustesInicialesData): number {
     switch (data.periodo) {
         case 'Mensual': return Math.round(data.presupuesto / 4)

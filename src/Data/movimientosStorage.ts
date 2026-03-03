@@ -99,6 +99,16 @@ export function getGastoDiaActual(): number {
         .reduce((sum, m) => sum + m.monto, 0)
 }
 
+/** Suma de movimientos en el mes actual (1ro al día de hoy) */
+export function getGastoMesActual(): number {
+    const hoy = fechaHoy()
+    const [year, month] = hoy.split('-')
+    const inicioMes = `${year}-${month}-01`
+    return getMovimientos()
+        .filter((m) => m.fecha >= inicioMes && m.fecha <= hoy)
+        .reduce((sum, m) => sum + m.monto, 0)
+}
+
 /** Rango ISO de una semana con offset (0 = esta semana, -1 = semana pasada...) */
 function rangoSemana(offset: number): { inicio: string; fin: string } {
     const hoy = parseIsoDate(fechaHoy())
