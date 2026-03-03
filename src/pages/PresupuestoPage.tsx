@@ -28,7 +28,6 @@ export function PresupuestoPage() {
     const [presupuesto, setPresupuesto] = useState(() => ajustes?.presupuesto ?? 0)
     const [offset, setOffset] = useState(0)
 
-    // 'Diarios' ya no aplica — si existía en localStorage lo tratamos como 'Mensual'
     const periodo: 'Mensual' | 'Semanal' =
         ajustes?.periodo === 'Semanal' ? 'Semanal' : 'Mensual'
     const labels = labelPorPeriodo[periodo]
