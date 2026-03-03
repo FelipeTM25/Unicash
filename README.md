@@ -68,7 +68,6 @@ Claves principales:
 - `npm run dev` → levanta entorno de desarrollo
 - `npm run build` → compilación TypeScript + build de producción
 - `npm run preview` → previsualización del build
-- `npm run lint` → análisis estático con ESLint
 
 ## Cómo ejecutar el proyecto
 
