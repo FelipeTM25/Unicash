@@ -71,9 +71,11 @@ export function HistorialMovimientosPage() {
                     onCancelar={() => setIdEliminar(null)}
                 />
             )}
+            <div className='h-32' />
 
             <div className="fixed inset-x-0 bottom-[env(safe-area-inset-bottom)] z-40 w-full">
                 <div className="flex justify-center bg-transparent py-3">
+
                     <button
                         onClick={() => setMostrarRegistrar(true)}
                         className="flex items-center gap-2 rounded-full bg-button-primary px-6 py-3 text-[15px] font-semibold text-white shadow-lg transition-all hover:bg-title active:scale-[0.97] sm:text-xl"
@@ -82,7 +84,9 @@ export function HistorialMovimientosPage() {
                         + Registrar gasto
                     </button>
                 </div>
+
                 <BottomNavBar />
+
             </div>
         </>
     )
