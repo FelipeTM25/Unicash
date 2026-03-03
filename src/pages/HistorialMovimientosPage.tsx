@@ -31,14 +31,14 @@ export function HistorialMovimientosPage() {
                 <TopBrandTitle />
 
                 <div className="mt-4">
-                    <h1 className="text-2xl font-bold text-title sm:text-4xl">
+                    <h1 className="text-2xl font-bold text-title sm:text-3xl md:text-4xl">
                         Historial de Movimientos
                     </h1>
                 </div>
 
                 <div className="mt-4 flex flex-col gap-3 pb-8">
                     {movimientos.length === 0 ? (
-                        <p className="mt-8 text-center text-[15px] text-zinc-400 sm:text-xl">
+                        <p className="mt-8 text-center text-[15px] text-zinc-400 sm:text-lg md:text-xl">
                             Aún no hay movimientos registrados.
                         </p>
                     ) : (
@@ -78,7 +78,7 @@ export function HistorialMovimientosPage() {
 
                     <button
                         onClick={() => setMostrarRegistrar(true)}
-                        className="flex items-center gap-2 rounded-full bg-button-primary px-6 py-3 text-[15px] font-semibold text-white shadow-lg transition-all hover:bg-title active:scale-[0.97] sm:text-xl"
+                        className="flex items-center gap-2 rounded-full bg-button-primary px-6 py-3 text-[15px] font-semibold text-white shadow-lg transition-all hover:bg-title active:scale-[0.97] sm:text-lg md:text-xl"
                         aria-label="Registrar gasto"
                     >
                         + Registrar gasto

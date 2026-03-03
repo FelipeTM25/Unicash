@@ -14,7 +14,7 @@ const statusColors: Record<BudgetStatus, string> = {
 export function BudgetStatusBadge({ message, status }: BudgetStatusBadgeProps) {
     return (
         <div className="mt-7 flex items-center justify-center gap-3 sm:mt-10">
-            <p className={`text-[20px] leading-snug sm:text-3xl text-center font-medium ${statusColors[status]}`}>{message}</p>
+            <p className={`text-center text-lg leading-snug font-medium sm:text-xl md:text-2xl ${statusColors[status]}`}>{message}</p>
         </div>
     )
 }

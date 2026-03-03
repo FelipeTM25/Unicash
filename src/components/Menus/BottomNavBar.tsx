@@ -31,7 +31,7 @@ export function BottomNavBar() {
     const activeTab = getActiveTab(pathname)
 
     return (
-        <nav className="overflow-hidden rounded-t-xl border-t border-zinc-300 bg-transparent shadow-lg backdrop-blur-sm ">
+        <nav className="mx-auto w-full max-w-5xl overflow-hidden rounded-t-xl border-t border-zinc-300 bg-transparent shadow-lg backdrop-blur-sm">
             <ul className="grid grid-cols-4">
                 {tabs.map((tab) => {
                     const isActive = tab.id === activeTab
@@ -43,13 +43,13 @@ export function BottomNavBar() {
                                 type="button"
                                 aria-current={isActive ? 'page' : undefined}
                                 onClick={() => navigate(pathByTab[tab.id])}
-                                className={`flex w-full flex-col items-center justify-center gap-1 py-3 transition-colors duration-200 ${isActive ? 'bg-title/40 text-root-bg' : 'bg-transparent text-zinc-950'
+                                className={`flex w-full flex-col items-center justify-center gap-1 py-2.5 text-sm transition-colors duration-200 md:py-3 md:text-base ${isActive ? 'bg-title/40 text-root-bg' : 'bg-transparent text-zinc-950'
                                     }`}
                             >
-                                <span className="flex h-10 items-center justify-center">
+                                <span className="flex h-9 items-center justify-center md:h-10">
                                     <Icon className={tab.iconClassName} />
                                 </span>
-                                <span className="text-[14px] leading-none">{tab.label}</span>
+                                <span className="leading-none">{tab.label}</span>
                             </button>
                         </li>
                     )

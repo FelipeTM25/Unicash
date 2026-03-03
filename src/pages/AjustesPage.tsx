@@ -55,7 +55,7 @@ export function AjustesPage() {
             <MobileScreen>
                 <TopBrandTitle />
 
-                <h1 className="mt-4 text-center text-3xl leading-tight font-bold text-title sm:text-5xl">
+                <h1 className="mt-4 text-center text-3xl leading-tight font-bold text-title sm:text-4xl md:text-5xl">
                     Ajustes
                 </h1>
 

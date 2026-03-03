@@ -43,7 +43,7 @@ export function EditarCategoriasPage() {
                 <TopBrandTitle />
 
                 <div className="mt-4">
-                    <h1 className="text-2xl font-bold text-title sm:text-4xl">
+                    <h1 className="text-2xl font-bold text-title sm:text-3xl md:text-4xl">
                         Editar Categorías
                     </h1>
                 </div>
@@ -89,7 +89,7 @@ export function EditarCategoriasPage() {
                 <div className="flex justify-center bg-transparent py-3">
                     <button
                         onClick={() => setMostrarAnadir(true)}
-                        className="flex items-center gap-2 rounded-full bg-button-primary px-6 py-3 text-[15px] font-semibold text-white shadow-lg transition-all hover:bg-title active:scale-[0.97] sm:text-xl"
+                        className="flex items-center gap-2 rounded-full bg-button-primary px-6 py-3 text-[15px] font-semibold text-white shadow-lg transition-all hover:bg-title active:scale-[0.97] sm:text-lg md:text-xl"
                         aria-label="Añadir categoría"
                     >
                         + Añadir categoría

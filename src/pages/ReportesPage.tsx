@@ -138,7 +138,7 @@ export function ReportesPage() {
             <MobileScreen>
                 <TopBrandTitle />
 
-                <h1 className="mt-4 text-center text-5xl leading-tight font-bold text-title sm:text-6xl">
+                <h1 className="mt-4 text-center text-4xl leading-tight font-bold text-title sm:text-5xl md:text-6xl">
                     Tus Movimientos
                 </h1>
 

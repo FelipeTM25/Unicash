@@ -108,11 +108,11 @@ export function AjustesIniciales() {
         <MobileScreen>
             <TopBrandTitle />
 
-            <h1 className="mt-4 text-center text-3xl leading-tight font-bold text-title sm:text-6xl" >Comencemos</h1>
-            <p className="mt-20 text-[20px] leading-tight text-zinc-900 sm:text-3xl">Ingresa los siguientes datos:</p>
+            <h1 className="mt-4 text-center text-3xl leading-tight font-bold text-title sm:text-4xl md:text-5xl">Comencemos</h1>
+            <p className="mt-10 text-lg leading-tight text-zinc-900 sm:text-xl md:mt-12 md:text-2xl">Ingresa los siguientes datos:</p>
 
-            <form onSubmit={handleSubmit} className="mt-8 flex flex-1 flex-col sm:mt-8">
-                <div className="flex flex-col gap-6 sm:gap-6">
+            <form onSubmit={handleSubmit} className="mt-8 flex flex-1 flex-col">
+                <div className="flex flex-col gap-6 md:gap-7">
                     <FormField
                         label="Nombre"
                         value={formData.nombre}
@@ -137,8 +137,8 @@ export function AjustesIniciales() {
                     />
                 </div>
 
-                <div className="mt-4 pb-4 pt-6 sm:pb-8 sm:pt-10">
-                    <PrimaryButton text="Continuar" type="submit" className='text-zinc-100 text-[20px]' />
+                <div className="mt-4 max-w-xl pb-4 pt-6 sm:pb-6 sm:pt-8 md:pb-8 md:pt-10">
+                    <PrimaryButton text="Continuar" type="submit" className="text-zinc-100 text-lg sm:text-xl md:text-2xl" />
                 </div>
             </form>
         </MobileScreen>

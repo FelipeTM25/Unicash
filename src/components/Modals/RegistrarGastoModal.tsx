@@ -37,10 +37,10 @@ export function RegistrarGastoModal({ onClose, onGuardado }: RegistrarGastoModal
             onClick={onClose}
         >
             <div
-                className="w-full max-w-sm rounded-3xl bg-white p-6 shadow-xl"
+                className="w-full max-w-sm rounded-3xl bg-white p-6 shadow-xl sm:max-w-md"
                 onClick={(e) => e.stopPropagation()}
             >
-                <p className="text-center text-[20px] font-bold text-title sm:text-3xl">
+                <p className="text-center text-[20px] font-bold text-title sm:text-2xl md:text-3xl">
                     Registrar gasto
                 </p>
 
@@ -71,14 +71,14 @@ export function RegistrarGastoModal({ onClose, onGuardado }: RegistrarGastoModal
                     <div className="flex flex-col gap-3 pt-1">
                         <button
                             type="submit"
-                            className="w-full rounded-2xl bg-button-primary py-3 text-[15px] font-medium text-zinc-100 transition-all duration-200 hover:bg-title active:scale-[0.99] sm:text-2xl"
+                            className="w-full rounded-2xl bg-button-primary py-3 text-[15px] font-medium text-zinc-100 transition-all duration-200 hover:bg-title active:scale-[0.99] sm:text-lg md:text-xl"
                         >
                             Guardar
                         </button>
                         <button
                             type="button"
                             onClick={onClose}
-                            className="w-full rounded-2xl border-2 border-button-primary bg-transparent py-3 text-[15px] font-medium text-button-primary transition-all duration-200 hover:bg-button-primary/10 active:scale-[0.99] sm:text-2xl"
+                            className="w-full rounded-2xl border-2 border-button-primary bg-transparent py-3 text-[15px] font-medium text-button-primary transition-all duration-200 hover:bg-button-primary/10 active:scale-[0.99] sm:text-lg md:text-xl"
                         >
                             Cancelar
                         </button>

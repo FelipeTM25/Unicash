@@ -53,22 +53,22 @@ export function HomePage() {
             <MobileScreen>
                 <TopBrandTitle />
 
-                <h1 className="mt-15 mb-5 text-center text-5xl leading-tight font-bold text-title sm:mt-6 sm:text-6xl">Hola, {primerNombre}!</h1>
+                <h1 className="mt-10 mb-4 text-center text-4xl leading-tight font-bold text-title sm:mt-8 sm:text-5xl md:text-6xl">Hola, {primerNombre}!</h1>
 
-                <h2 className="mt-10 text-center text-[30px] leading-tight font-bold text-zinc-950 sm:mt-14 sm:text-6xl">Hoy has usado:</h2>
-                <p className="mt-5 text-center text-[40px] font-normal text-label sm:mt-7 sm:text-7xl">{formatCOP(gastoHoy)}</p>
+                <h2 className="mt-8 text-center text-2xl leading-tight font-bold text-zinc-950 sm:mt-10 sm:text-3xl md:text-4xl">Hoy has usado:</h2>
+                <p className="mt-4 text-center text-4xl font-normal text-label sm:mt-6 sm:text-5xl md:text-6xl">{formatCOP(gastoHoy)}</p>
 
                 <BudgetStatusBadge message={budgetMessage} status={budgetStatus} />
 
-                <section className="mx-auto mt-5 w-full max-w-[80%] sm:mt-12">
+                <section className="mx-auto mt-5 w-full max-w-xl sm:mt-10 md:mt-12">
                     {/* <h3 className="text-center text-[18px] leading-tight font-bold text-zinc-950 sm:text-7xl">
                         Ingresa tu nuevo movimiento
                     </h3> */}
 
-                    <div className="mt-2 flex justify-center sm:mt-6">
+                    <div className="mt-2 flex justify-center sm:mt-5 md:mt-6">
                         <button
                             onClick={() => setMostrarRegistrar(true)}
-                            className="flex items-center gap-2 rounded-full bg-button-primary px-10 py-5 text-[18px] font-semibold text-white shadow-lg transition-all hover:bg-title active:scale-[0.97] sm:text-xl"
+                            className="flex items-center gap-2 rounded-full bg-button-primary px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:bg-title active:scale-[0.97] sm:px-10 sm:py-5 sm:text-lg md:text-xl"
                             aria-label="Registrar gasto"
                         >
                             + Registrar gasto

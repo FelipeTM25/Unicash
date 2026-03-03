@@ -17,10 +17,10 @@ export function InicioPage() {
             <div className="mt-4 flex flex-1 flex-col items-center">
                 <LogoBadge />
 
-                <h1 className="mt-6 text-5xl font-bold tracking-wide text-logo sm:mt-16 sm:text-6xl">UNICASH</h1>
+                <h1 className="mt-6 text-4xl font-bold tracking-wide text-logo sm:mt-12 sm:text-5xl md:text-6xl">UNICASH</h1>
 
-                <div className="mt-auto w-full pb-16 sm:pb-20">
-                    <PrimaryButton text="Comenzar" onClick={handleComenzar} className=" text-zinc-100 h-16 text-[20px] sm:h-18 sm:text-3xl" />
+                <div className="mt-auto w-full max-w-xl pb-12 sm:pb-16 md:pb-20">
+                    <PrimaryButton text="Comenzar" onClick={handleComenzar} className="text-zinc-100 text-lg sm:text-xl md:text-2xl" />
                 </div>
             </div>
         </MobileScreen>
