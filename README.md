@@ -97,4 +97,4 @@ npm run dev
 ## Autores
 
 - **Felipe Torres Montoya**
-- **Miguel Angel Aristizabal Pabon**
+- **Miguel Aristizabal Pabon**
