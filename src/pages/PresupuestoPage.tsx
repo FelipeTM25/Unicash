@@ -111,16 +111,18 @@ export function PresupuestoPage() {
                     <button
                         type="button"
                         onClick={handleAbrirConsejos}
-                        className="w-full rounded-2xl border-2 border-button-primary bg-transparent py-3 text-[17px] font-medium text-button-primary transition-all duration-200 hover:bg-button-primary/10 active:scale-[0.99] sm:text-2xl"
+                        className="w-full rounded-2xl border-2 border-button-primary bg-button-primary py-3 text-[17px] font-semibold text-white shadow-lg transition-all duration-200 hover:bg-title hover:border-title active:scale-[0.97] sm:text-2xl"
                     >
                         Consejos para tus movimientos
                     </button>
 
-                    <PrimaryButton
-                        text="Editar"
+                    <button
+                        type="button"
                         onClick={() => setModalEditar(true)}
-                        className=" text-button-primary h-auto w-auto self-center rounded-none bg-transparent px-0 py-0 text-[17px] hover:bg-transparent hover:text-logo hover:underline active:scale-100 sm:text-2xl"
-                    />
+                        className="w-full rounded-2xl border-2 border-button-primary bg-button-primary py-3 text-[17px] font-semibold text-white shadow-lg transition-all duration-200 hover:bg-title hover:border-title active:scale-[0.97] sm:text-2xl"
+                    >
+                        Editar
+                    </button>
                 </div>
 
                 <div className="h-30" aria-hidden />
