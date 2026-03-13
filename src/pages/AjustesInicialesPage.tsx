@@ -110,7 +110,7 @@ export function AjustesIniciales() {
 
         const dataToSave: AjustesInicialesStorageData = {
             nombre: formData.nombre.trim(),
-            presupuesto,
+            presupuesto: presupuesto as number,
             periodo: formData.periodo,
         }
 

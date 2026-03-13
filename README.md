@@ -31,7 +31,6 @@ Herramientas de desarrollo:
 
 - `typescript`
 - `vite`
-- `eslint` + `typescript-eslint`
 - `@vitejs/plugin-react`
 
 ## Arquitectura general
@@ -69,7 +68,6 @@ Claves principales:
 - `npm run dev` → levanta entorno de desarrollo
 - `npm run build` → compilación TypeScript + build de producción
 - `npm run preview` → previsualización del build
-- `npm run lint` → análisis estático con ESLint
 
 ## Cómo ejecutar el proyecto
 
@@ -95,3 +93,8 @@ npm run dev
 - Seguimiento de presupuesto por periodo
 - Reportes por categoría, valor, día y semana con gráficas
 - Reseteo completo de datos del usuario
+
+## Autores
+
+- **Felipe Torres Montoya**
+- **Miguel Aristizabal Pabon**
