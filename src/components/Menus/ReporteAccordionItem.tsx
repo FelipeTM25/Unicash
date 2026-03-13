@@ -23,7 +23,13 @@ export function ReporteAccordionItem({ title, isOpen, onToggle, children }: Repo
                 />
             </button>
 
-            {isOpen && <div className="pb-4 ">{children}</div>}
+            <div
+                className={`grid transition-[grid-template-rows,opacity,padding] duration-550 ease-in-out ${
+                    isOpen ? 'grid-rows-[1fr] opacity-100 pb-4' : 'grid-rows-[0fr] opacity-0 pb-0'
+                }`}
+            >
+                <div className="overflow-hidden">{children}</div>
+            </div>
         </section>
     )
 }

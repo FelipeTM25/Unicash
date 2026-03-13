@@ -60,7 +60,7 @@ function PlaceholderReporte() {
 }
 
 export function ReportesPage() {
-    const [openSection, setOpenSection] = useState<SectionId | null>('categoria')
+    const [openSection, setOpenSection] = useState<SectionId | null>(null)
     const movimientos = useMemo(() => getMovimientos(), [])
 
     const porCategoria = useMemo(() => {
