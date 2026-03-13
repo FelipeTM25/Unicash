@@ -5,6 +5,7 @@ import { FormField } from '../components/Fields/FormField'
 import { MobileScreen } from '../components/MobileScreen'
 import { PrimaryButton } from '../components/Buttons/PrimaryButton'
 import { SelectField } from '../components/Fields/SelectField'
+import { TerminosModal } from '../components/Modals/TerminosModal'
 import { TopBrandTitle } from '../components/TopBrandTitle'
 import { periodoOptions } from '../Data/periodoOptions'
 
@@ -86,6 +87,10 @@ export function AjustesIniciales() {
     const navigate = useNavigate()
     const [formData, setFormData] = useState<AjustesInicialesFormData>(getInitialFormData)
     const [errors, setErrors] = useState<{ nombre?: string; presupuesto?: string }>({})
+    
+    // Estados para los Términos y Condiciones
+    const [aceptaTerminos, setAceptaTerminos] = useState(false)
+    const [mostrarTerminos, setMostrarTerminos] = useState(false)
 
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
@@ -119,8 +124,11 @@ export function AjustesIniciales() {
     }
 
     return (
-        <MobileScreen>
-            <TopBrandTitle />
+        <>
+            {mostrarTerminos && <TerminosModal onClose={() => setMostrarTerminos(false)} />}
+        
+            <MobileScreen>
+                <TopBrandTitle />
 
             <h1 className="mt-4 text-center text-3xl leading-tight font-bold text-title sm:text-4xl md:text-5xl">Comencemos</h1>
             <p className="mt-10 text-lg leading-tight text-zinc-900 sm:text-xl md:mt-12 md:text-2xl">Ingresa los siguientes datos:</p>
@@ -161,10 +169,45 @@ export function AjustesIniciales() {
                     />
                 </div>
 
-                <div className="mt-4 max-w-xl pb-4 pt-6 sm:pb-6 sm:pt-8 md:pb-8 md:pt-10">
-                    <PrimaryButton text="Continuar" type="submit" className="text-zinc-100 text-lg sm:text-xl md:text-2xl" />
+                <div className="mt-8 flex items-start gap-3 px-1">
+                    <input
+                        type="checkbox"
+                        id="terminos"
+                        checked={aceptaTerminos}
+                        onChange={(e) => setAceptaTerminos(e.target.checked)}
+                        className="mt-1 h-5 w-5 shrink-0 rounded border-zinc-300 text-button-primary focus:ring-button-primary cursor-pointer"
+                    />
+                    <label htmlFor="terminos" className="text-[15px] leading-tight text-zinc-700 sm:text-lg select-none cursor-pointer">
+                        He leído y acepto los{' '}
+                        <button
+                            type="button"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                e.stopPropagation()
+                                setMostrarTerminos(true)
+                            }}
+                            className="font-semibold text-button-primary underline decoration-2 underline-offset-2 hover:text-title"
+                        >
+                            Términos y Condiciones
+                        </button>
+                    </label>
+                </div>
+
+                <div className="mt-4 max-w-xl pb-4 pt-4 sm:pb-6 sm:pt-6 md:pb-8">
+                    <button 
+                        type="submit" 
+                        disabled={!aceptaTerminos}
+                        className={`w-full rounded-2xl py-4 text-center font-bold shadow-lg transition-all duration-300 active:scale-[0.98] sm:text-xl md:text-2xl ${
+                            aceptaTerminos 
+                                ? 'bg-button-primary text-zinc-100 hover:bg-title focus:ring-4 focus:ring-title/50' 
+                                : 'bg-zinc-300 text-zinc-500 cursor-not-allowed opacity-50'
+                        }`}
+                    >
+                        Continuar
+                    </button>
                 </div>
             </form>
         </MobileScreen>
+        </>
     )
 }
