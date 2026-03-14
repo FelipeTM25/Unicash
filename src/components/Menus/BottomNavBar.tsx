@@ -44,7 +44,7 @@ export function BottomNavBar() {
                                     type="button"
                                     aria-current={isActive ? 'page' : undefined}
                                     onClick={() => navigate(pathByTab[tab.id])}
-                                    className={`flex w-full flex-col items-center justify-center gap-1 py-2 text-xs transition-colors duration-200 sm:py-2.5 sm:text-sm md:py-3 md:text-base ${isActive ? 'bg-title/80 text-root-bg' : 'bg-transparent text-zinc-950'
+                                    className={`flex w-full flex-col items-center justify-center gap-1 pt-2 pb-[calc(1rem+env(safe-area-inset-bottom,0px))] text-xs transition-colors duration-200 sm:py-2.5 sm:text-sm md:py-3 md:text-base ${isActive ? 'bg-title/80 text-root-bg' : 'bg-transparent text-zinc-950'
                                         }`}
                                 >
                                     <span className="flex h-8 items-center justify-center sm:h-9 md:h-10">
