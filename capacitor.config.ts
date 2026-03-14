@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.unicash.app',
+  appId: 'com.upb.unicash.estudiantes',
   appName: 'unicash',
   webDir: 'dist'
 };
