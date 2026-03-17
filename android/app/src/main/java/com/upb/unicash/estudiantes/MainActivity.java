@@ -1,4 +1,4 @@
-package com.unicash.app;
+package com.upb.unicash.estudiantes;
 
 import com.getcapacitor.BridgeActivity;
 
